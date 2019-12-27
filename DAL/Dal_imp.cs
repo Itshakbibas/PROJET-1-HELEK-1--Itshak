@@ -13,7 +13,7 @@ namespace DAL
     {
         public void addRequest(GuestRequest g)
         {
-
+            
         }
         public void updateRequest() { }
         //hostingUnit
