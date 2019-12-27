@@ -12,7 +12,10 @@ namespace BL
     public class BL_prinp:IBL
     {
        public  void addRequest(GuestRequest g)   {
-            
+            int firstmonth = Int32.Parse(g.EntryDate.Substring(3));
+            int firstday = Int32.Parse(g.EntryDate.Substring(0, 2));
+            int lastmonth = Int32.Parse(g.ReleaseDate.Substring(3));
+            int lastday = Int32.Parse(g.ReleaseDate.Substring(0, 2));
         }
        public void updateRequest(GuestRequest g) { }
        //hostingUnit
@@ -29,6 +32,7 @@ namespace BL
        public void printAllOrder() { }
        public void printAllCustomer() { }
        public void printAllBranchesOfBank() { }
+        // New Itshak2
 
 
     }
