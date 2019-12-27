@@ -13,7 +13,7 @@ namespace DAL
     {
         public void addRequest(GuestRequest request)
         {
-
+            DS.DataSource.guestRequestList.Add(request);
         }
         public void updateRequest() { }
         //hostingUnit
