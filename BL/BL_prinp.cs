@@ -14,18 +14,18 @@ namespace BL
        public  void addRequest(GuestRequest g)   {
             
         }
-       public void updateRequest() { }
+       public void updateRequest(GuestRequest g) { }
        //hostingUnit
-       public void addHostingUnit() { }
+       public void addHostingUnit(HostingUnit h) { }
        public void deleteHostingUnit() { }
        public void updateHostingUnit() { }
-       
-       //Invitation
-       public void addInvitation() { }
-       public void UpdateInvitation() { }
-       
+
+        //Invitation
+        public void addOrder(Order order) { }
+        public void UpdateOrder(Order order) { }
+
         //prints 
-       public void printAllHostingUnit() { }
+        public void printAllHostingUnit() { }
        public void printAllOrder() { }
        public void printAllCustomer() { }
        public void printAllBranchesOfBank() { }

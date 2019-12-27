@@ -19,7 +19,6 @@ namespace DS
 
             /*string[] privateName = new string[] { "mickael", "itshak", "chmoulik", "hillel", "acher" };
             string[] familyName = new string[] { "balensi", "bibas", "illouz", "farouz", "klein" };
-
             long [] phoneNumber = new long[] { 0767894905, 0584191198, 0512061998, 0648786859, 0589758695 };
             */
             hostingUnitsList = new List<HostingUnit>();

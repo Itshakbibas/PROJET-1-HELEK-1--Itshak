@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class DAL_XML: IDAL
+    public class DAL_XML: Idal
     {
        
 

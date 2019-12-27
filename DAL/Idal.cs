@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using BE;
 using DS;
 using static DS.DataSource;
-using BL;
 
 namespace DAL
 {
@@ -14,19 +13,15 @@ namespace DAL
     {
         //request
 
-        void addRequest(GuestRequest guest ) { 
-        
-        
-        }
-        void addHostingUnit(HostingUnit unit)
-        {
-
-        }
-        void addOrder(Order order) { }
+        void addRequest(GuestRequest guest);
+        void addHostingUnit(HostingUnit unit);
 
 
-        void updateRequest() { }
-        void updateHostingUnit() { }
+        void addOrder(Order order);
+
+
+        void updateRequest();
+        void updateHostingUnit();
         void updateOrder();
 
         void deleteHostingUnit();
@@ -38,9 +33,9 @@ namespace DAL
         void getAllCustomer();
         void getAllBranchesOfBank();
 
-        IEnumerable<GuestRequest> GetAllGuestRequests(Func<GuestRequest, bool> predicate = null);
-        IEnumerable<HostingUnit> GetAllHostingUnit(Func<HostingUnit, bool> predicate = null);
-        IEnumerable<Order> GetAllOrder(Func<Order, bool> predicate = null);
+       // IEnumerable<GuestRequest> GetAllGuestRequests(Func<GuestRequest, bool> predicate = null);
+        //IEnumerable<HostingUnit> GetAllHostingUnit(Func<HostingUnit, bool> predicate = null);
+        //IEnumerable<Order> GetAllOrder(Func<Order, bool> predicate = null);
         //fusion avec master 
     }
    

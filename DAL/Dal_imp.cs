@@ -8,22 +8,22 @@ using DS;
 using static DS.DataSource;
 
 namespace DAL
-{	
-    public  class Dal_imp:Idal
-	{
+{
+    public class Dal_imp : Idal
+    {
         public void addRequest(GuestRequest g)
         {
 
         }
-        public void updateRequest(HostingUnit hosting) { }
+        public void updateRequest() { }
         //hostingUnit
-        public void addHostingUnit() { }
+        public void addHostingUnit(HostingUnit hosting ) { }
         public void deleteHostingUnit() { }
         public void updateHostingUnit() { }
 
         //Invitation
-        public void addInvitation() { }
-        public void UpdateInvitation() { }
+        public void addOrder(Order order ) { }
+        public void updateOrder() { }
 
         //prints 
         public void printAllHostingUnit() { }
