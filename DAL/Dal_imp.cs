@@ -11,7 +11,7 @@ namespace DAL
 {
     public class Dal_imp : Idal
     {
-        public void addRequest(GuestRequest g)
+        public void addRequest(GuestRequest request)
         {
 
         }
