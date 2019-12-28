@@ -18,5 +18,9 @@ namespace BE
         {
             return;
         }
+        public BankAccount()
+        {
+
+        }
     }
 }

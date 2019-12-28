@@ -25,7 +25,11 @@ namespace BL
 
         //Invitation
         public void addOrder(Order order) { }
-        public void UpdateOrder(Order order) { }
+        public void UpdateOrder(Order order)         
+        {
+        
+        
+        }
 
         //prints 
         public void printAllHostingUnit() { }

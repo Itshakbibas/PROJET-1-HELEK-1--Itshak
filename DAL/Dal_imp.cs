@@ -13,12 +13,18 @@ namespace DAL
     {
         public void addRequest(GuestRequest g)
         {
-            
+            DS.DataSource.guestRequestList.Add(g);
         }
-        public void updateRequest() { }
+        public void updateRequest( GuestRequest g) 
+        { 
+               if 
+        }
         //hostingUnit
         public void addHostingUnit(HostingUnit hosting ) { }
-        public void deleteHostingUnit() { }
+        public void deleteHostingUnit(HostingUnit hosting) 
+        {
+            DS.DataSource.hostingUnitsList.Remove(hosting);
+         }
         public void updateHostingUnit() { }
 
         //Invitation
@@ -30,6 +36,10 @@ namespace DAL
         public void printAllOrder() { }
         public void printAllCustomer() { }
         public void printAllBranchesOfBank() { }
+        public void getAllHostingUnit() { }
+        public void getAllOrder() { }
+        public void getAllCustomer() { }
+       public  void getAllBranchesOfBank() { }
 
         //new mickael
 
