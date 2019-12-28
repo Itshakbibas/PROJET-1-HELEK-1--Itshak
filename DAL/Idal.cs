@@ -24,7 +24,7 @@ namespace DAL
         void updateHostingUnit();
         void updateOrder();
 
-        void deleteHostingUnit();
+        void deleteHostingUnit(HostingUnit hosting);
 
 
         //get 

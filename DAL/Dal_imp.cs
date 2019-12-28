@@ -27,6 +27,7 @@ namespace DAL
         }
         //hostingUnit
         public void deleteHostingUnit() { }
+
         public void updateHostingUnit() { }
 
         //Invitation
@@ -38,6 +39,10 @@ namespace DAL
         public void printAllOrder() { }
         public void printAllCustomer() { }
         public void printAllBranchesOfBank() { }
+        public void getAllHostingUnit() { }
+        public void getAllOrder() { }
+        public void getAllCustomer() { }
+       public  void getAllBranchesOfBank() { }
 
 
 

@@ -15,9 +15,18 @@ namespace BE
         public DateTime CreateDate { get; set; }
         public DateTime OrderDate { get; set; }
 
-        public override ToString()
+        public override  string ToString()
         {
-            return;
+            return"gsgs";
+        }
+        public Order()
+        {
+            GuestRequestKey=10000001;
+            Status = StatusOfOrder.NotYetAddressed;
+        }
+        public Order (Order order)
+        {
+
         }
     }
 }
