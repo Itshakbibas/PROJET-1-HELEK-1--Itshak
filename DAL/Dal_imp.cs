@@ -11,25 +11,28 @@ namespace DAL
 {
     public class Dal_imp : Idal
     {
-        public void addRequest(GuestRequest g)
+        public void addRequest(GuestRequest request)
         {
-            DS.DataSource.guestRequestList.Add(g);
+            DS.DataSource.guestRequestList.Add(request);
         }
-        public void updateRequest( GuestRequest g) 
-        { 
-               if 
+        public void addHostingUnit(HostingUnit hosting)
+        {
+            DS.DataSource.hostingUnitsList.Add(hosting);
+        }
+        public void addOrder(Order order) {
+            DS.DataSource.ordersList.Add(order);
+        }
+        public void updateRequest(GuestRequest request) {
+            request.Status = CustomerRequirementStatus.transactionClosed;
         }
         //hostingUnit
-        public void addHostingUnit(HostingUnit hosting ) { }
-        public void deleteHostingUnit(HostingUnit hosting) 
-        {
-            DS.DataSource.hostingUnitsList.Remove(hosting);
-         }
+        public void deleteHostingUnit() { }
+
         public void updateHostingUnit() { }
 
         //Invitation
-        public void addOrder(Order order ) { }
-        public void updateOrder() { }
+        public void updateOrder(Order order) {
+        }
 
         //prints 
         public void printAllHostingUnit() { }
@@ -41,7 +44,7 @@ namespace DAL
         public void getAllCustomer() { }
        public  void getAllBranchesOfBank() { }
 
-        //new mickael
+
 
 
 
