@@ -15,15 +15,23 @@ namespace DAL
         {
             DS.DataSource.guestRequestList.Add(request);
         }
-        public void updateRequest() { }
+        public void addHostingUnit(HostingUnit hosting)
+        {
+            DS.DataSource.hostingUnitsList.Add(hosting);
+        }
+        public void addOrder(Order order) {
+            DS.DataSource.ordersList.Add(order);
+        }
+        public void updateRequest(GuestRequest request) {
+            request.Status = CustomerRequirementStatus.transactionClosed;
+        }
         //hostingUnit
-        public void addHostingUnit(HostingUnit hosting ) { }
         public void deleteHostingUnit() { }
         public void updateHostingUnit() { }
 
         //Invitation
-        public void addOrder(Order order ) { }
-        public void updateOrder() { }
+        public void updateOrder(Order order) {
+        }
 
         //prints 
         public void printAllHostingUnit() { }
