@@ -14,21 +14,29 @@ namespace BE
         public string MailAddress { get; set; }
         //status
         public CustomerRequirementStatus Status { get; set; }
-        public DateTime RegistrationDate = new DateTime();
-        public DateTime EntryDate = new DateTime();
-        public DateTime ReleaseDate = new DateTime();
+        public DateTime RegistrationDate { get; set; }
+        public DateTime EntryDate { get; set; }
+        public DateTime ReleaseDate { get; set; }
         //area
-        public TypeAreaOfTheCountry Area;
+        public TypeAreaOfTheCountry Area { get; set; }
         //subArea
         //type hostingUnit
         public TypeOfHostingUnit Type { get; set; }
-        public int Adults;
-        public int Children;
-        public Options Pool;
-        public Options Jacuzzi;
-        public Options Garden;
-        public Options ChildrensAttractions;
-        public override ToString();
+        public int Adults { get; set; }
+        public int Children { get; set; }
+        public Options Pool { get; set; }
+        public Options Jacuzzi { get; set; }
+        public Options Garden { get; set; }
+        public Options ChildrensAttractions { get; set; }
+        public GuestRequest()
+        {
+            PrivateName = "";
+            FamilyName = "";
+            MailAddress = "";
+            Status = CustomerRequirementStatus.active;
+
+        }
+        public override string ToString() { return ""; }
 
     }
 }
