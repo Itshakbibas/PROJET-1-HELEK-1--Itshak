@@ -9,36 +9,51 @@ using System.Threading;
 
 namespace BL
 {
-    public class BL_prinp:IBL
+    public class BL_prinp : IBL
 
     {
-        IDAL dal = FactoryDal.GetDal();
+        Idal dal = FactoryDal.GetDal();
 
-        public  void addRequest(GuestRequest g)   {
-            int firstmonth = Int32.Parse(g.EntryDate.Substring(3));
-            int firstday = Int32.Parse(g.EntryDate.Substring(0, 2));
-            int lastmonth = Int32.Parse(g.ReleaseDate.Substring(3));
-            int lastday = Int32.Parse(g.ReleaseDate.Substring(0, 2));
+        public void addRequest(GuestRequest guestreq) {
+            checkDate(guestreq);
+
+
         }
-       public void updateRequest(GuestRequest g) { }
-       //hostingUnit
-       public void addHostingUnit(HostingUnit h) { }
-       public void deleteHostingUnit() { }
-       public void updateHostingUnit() { }
+        public void updateRequest(GuestRequest g) { }
+        //hostingUnit
+        public void addHostingUnit(HostingUnit h) { }
+        public void deleteHostingUnit() { }
+        public void updateHostingUnit() { }
 
         //Invitation
-        public void addOrder(Order order) { }
-        public void UpdateOrder(Order order)         
+        public void addOrder(Order order)
         {
-        
-        
+
+            if (freerooms(2,7)==null)
+            {
+                throw new Exception("sorry there isn't any free room ")
+            }
+
+            dal.addOrder(order);
+
+
+
+            List<GuestRequest> guestreq = DataSource.guestRequestList;
+            List<HostingUnit> hosting = DataSource.hostingUnitsList;
+            List<Order> inv = DataSource.ordersList;
+
+
+        }
+        public void updateOrder(Order order)
+        {
+            dal.updateOrder(order);
         }
 
         //prints 
         public void printAllHostingUnit() { }
-       public void printAllOrder() { }
-       public void printAllCustomer() { }
-       public void printAllBranchesOfBank() { }
+        public void printAllOrder() { }
+        public void printAllCustomer() { }
+        public void printAllBranchesOfBank() { }
         // New Itshak2
         public int HostingOrder(HostingUnit hosting)
         {
@@ -47,10 +62,29 @@ namespace BL
         public IEnumerable<GuestRequest> GetAllGuestRequests(Func<GuestRequest, bool> predicate = null)
         {
             //if (predicate == null)
-            return dal.guestRequestList(predicate);
+            return dal.GetAllGuestRequests(predicate);
+        }
+        public IEnumerable<HostingUnit> GetAllHostingUnit(Func<HostingUnit, bool> predicate = null)
+        {
+            //if (predicate == null)
+            return dal.GetAllHostingUnit(predicate);
         }
 
-
-
+        public void checkDate(GuestRequest guestreq)
+        {
+            string firstday = guestreq.EntryDate.ToString();
+            string lastday = guestreq.ReleaseDate.ToString();
+            if (Int32.Parse(firstday.Substring(3, 5)) < Int32.Parse(lastday.Substring(3, 5)))
+                throw new Exception("the entrydate is not valuable");
+            if (Int32.Parse(firstday.Substring(3, 5)) < Int32.Parse(lastday.Substring(3, 5)) && Int32.Parse(firstday.Substring(0, 2)) - Int32.Parse(lastday.Substring(0, 2)) < 2)
+            {
+                throw new Exception("the entrydate is not valuable");
+            }
+        }
+        public IEnumerable<HostingUnit> freerooms(int EntryDate,int ReleaseDate)
+        {
+            return from n in GetAllHostingUnit()
+                   where n.IsRoomFree(EntryDate, ReleaseDate) 
+                   select n;
+        }
     }
-}

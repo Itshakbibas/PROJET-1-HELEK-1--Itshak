@@ -23,7 +23,8 @@ namespace BE
         public bool CollectionClearance { get; set; }
 
         public int CountHostingUnit{ get; set; }// number of rooms he owns 
-
+        
+        //public HostingUnit hosting;
        public Host()
         {
             HostKey = Configuration.HostKeyCount++;

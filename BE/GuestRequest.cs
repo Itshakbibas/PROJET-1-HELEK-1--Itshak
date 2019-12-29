@@ -26,6 +26,7 @@ namespace BE
         public DateTime EntryDate { get; set; }
         public DateTime ReleaseDate { get; set; }
         //area
+        public bool TransactionSigned;//Did the customer accept to make the payement
         public TypeAreaOfTheCountry Area { get; set; }
         //subArea
 
@@ -57,7 +58,7 @@ namespace BE
             Pool = Options.optional;
             Garden = Options.optional;
             ChildrensAttractions = Options.optional;
-
+            TransactionSigned = false;
         }
         public override string ToString() { 
             return string.Format(""); 

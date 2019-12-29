@@ -19,9 +19,9 @@ namespace DAL
 
 
 
-        void updateRequest();
-        void updateHostingUnit();
-        void updateOrder();
+        void updateRequest(GuestRequest guestreq);
+        void updateHostingUnit(HostingUnit hosting);
+        void updateOrder(Order order);
 
         void deleteHostingUnit(HostingUnit hosting);
 

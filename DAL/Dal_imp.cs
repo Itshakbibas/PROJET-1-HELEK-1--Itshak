@@ -10,7 +10,9 @@ using static DS.DataSource;
 namespace DAL
 {
     public class Dal_imp : Idal
+
     {
+        
         public void addRequest(GuestRequest request)
         {
             DS.DataSource.guestRequestList.Add(request);
@@ -20,7 +22,16 @@ namespace DAL
             DS.DataSource.hostingUnitsList.Add(unit);
         }
         public void addOrder(Order order) {
-            DS.DataSource.ordersList.Add(order);
+            List<GuestRequest> guestreq = DataSource.guestRequestList;
+            List<HostingUnit> hosting = DataSource.hostingUnitsList;
+            List<Order> inv = DataSource.ordersList;
+            //List<> guestreq = DataSource.guestRequestList;
+            if (!)
+
+
+
+
+            // DS.DataSource.ordersList.Add(order);
         }
 
 
@@ -33,6 +44,9 @@ namespace DAL
 
         public void updateOrder(Order order)
         {
+            List<Order> l = DataSource.ordersList;
+            if (l.Exists(x => x.GuestRequestKey == order.GuestRequestKey))
+                Order O = l.Find(x => x.GuestRequestKey == order.GuestRequestKey);
 
         }
 
@@ -67,8 +81,24 @@ namespace DAL
                    select n;
 
         }
+        public IEnumerable<Order> GetAllOrder(Func<Order, bool> predicate = null)
+        {
+            if (predicate == null)
+                return DataSource.ordersList.AsEnumerable();
+            return DataSource.ordersList.Where(predicate);
 
+        }
+        public IEnumerable<HostingUnit> GetAllHostingUnit(Func<HostingUnit, bool> predicate = null)
+        {
+            if (predicate == null)
+                return DataSource.hostingUnitsList.AsEnumerable();
+            return DataSource.hostingUnitsList.Where(predicate);
 
+            /* return from n in DataSource.hostingUnitsList
+                   where (predicate(n))
+                   select n;*/
+
+        }
 
     }
 }
