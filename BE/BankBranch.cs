@@ -8,6 +8,7 @@ namespace BE
 {
         public  class BankBranch
     {
+
         public Bank BankNumber { get; set; }
         public string BankName { get; set; }
         public int BranchNumber { get; set; }
@@ -25,6 +26,7 @@ namespace BE
         public override string ToString()
         {
             return "";
+
         }
     }
 }

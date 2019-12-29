@@ -28,10 +28,12 @@ namespace DAL
         public void updateRequest(GuestRequest request) {
             request.Status = CustomerRequirementStatus.transactionClosed;
         }
+
         public void updateHostingUnit(HostingUnit unit) { }
 
         public void updateOrder(Order order)
         {
+
         }
 
 
@@ -40,6 +42,7 @@ namespace DAL
             DS.DataSource.hostingUnitsList.Remove(unit);
         }
         //prints 
+
         public List<HostingUnit> getAllHostingUnit() {
             return DS.DataSource.hostingUnitsList;
         }
@@ -55,6 +58,15 @@ namespace DAL
         return DS.DataSource.}
 
 
+        public IEnumerable<GuestRequest> GetAllGuestRequests(Func<GuestRequest, bool> predicate = null)
+        {
+            if (predicate == null)
+                return DataSource.guestRequestList.AsEnumerable();
+            return from n in DataSource.guestRequestList
+                   where (predicate(n))
+                   select n;
+
+        }
 
 
 

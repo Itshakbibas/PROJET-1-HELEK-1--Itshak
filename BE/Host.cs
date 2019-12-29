@@ -7,8 +7,12 @@ using System.Threading.Tasks;
 namespace BE
 {
     public class Host
+
     {
-        public static long countHost = 10000000;
+        List<string> PN = new List<string>() { "mickael", "itshak", "shmuel","Acher","raphael","Elie",
+            "Dov" };
+        List<string> FN = new List<string>() { "Balensi", "bibas", "Illouz", "Klein", "Bloch", "Drai", "Chriqui" };
+        Random r = new Random(DateTime.Now.Millisecond);
         public long HostKey { get; set; }
         public string PrivateName { get; set; }
         public string FamilyName { get; set; }
@@ -18,15 +22,19 @@ namespace BE
         public long BankAccountNumber { get; set; }
         public bool CollectionClearance { get; set; }
 
-        public Host(string privateName, string familyName, long phoneNumber,
-                    string suffix, string bankAccount)
+        public int CountHostingUnit{ get; set; }// number of rooms he owns 
+
+       public Host()
         {
-            HostKey = countHost++;
-            PrivateName = privateName;
-            FamilyName = familyName;
-            PhoneNumber = phoneNumber;
-            MailAddress = privateName + "." + familyName + "@" + suffix;
-            BankAccount = bankAccount;
+            HostKey = Configuration.HostKeyCount++;
+            PrivateName = "";
+            FamilyName = "";
+            PhoneNumber = 000000000;
+            MailAddress = PrivateName + FamilyName + "@" + "gmail.com";
+            BankAccountNumber = 12345678;
+            CollectionClearance = false;
+            BankBranchDetails = new BankBranch();
+            CountHostingUnit = 0;
         }
         public override string ToString()
         {

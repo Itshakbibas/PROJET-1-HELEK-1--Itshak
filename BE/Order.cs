@@ -8,12 +8,16 @@ namespace BE
 {
     public class Order
     {
-        public long hostingUnitKey { get; set; }
-        public long guestRequestKey { get; set; }
-        public long orderKey { get; set; }
-        public StatusOfOrder status;
+
+        public long HostingUnitKey { get; set; }
+        public long GuestRequestKey { get; set; }
+        public long OrderKey { get; set; }
+        public StatusOfOrder Status;
         public DateTime createDate { get; set; }
-        public DateTime orderDate { get; set; }
+        public DateTime OrderDate { get; set; } 
+       
+
+
 
         public Order()
         {

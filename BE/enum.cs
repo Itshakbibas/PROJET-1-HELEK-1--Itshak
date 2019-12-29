@@ -45,6 +45,7 @@ namespace BE
         optional
     }
 
+
     public enum Bank
     {
         bankHapoalim,
@@ -57,6 +58,6 @@ namespace BE
         citibank,
         HSBC
     }
-    
+
     //rajouter subArea
 }
