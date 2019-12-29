@@ -10,17 +10,20 @@ namespace BL
 {
     public interface IBL
     {
-        //request
-        void addRequest(GuestRequest g);
-        void updateRequest(GuestRequest g);
+        #region add
+        void addRequest(GuestRequest request);
+        void addHostingUnit(HostingUnit unit);
+        void addOrder(Order order);
+
+        #endregion
+
+        void updateRequest(GuestRequest request);
 
         //hostingUnit
-        void addHostingUnit(HostingUnit h);
         void deleteHostingUnit();
         void updateHostingUnit();
 
         //Invitation
-        void addOrder(Order order);
         void UpdateOrder(Order order);
 
         //prints 
