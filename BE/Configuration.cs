@@ -4,12 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UI
+namespace BE
 {
-    class Program
+    public class Configuration
     {
-        static void Main(string[] args)
-        {
-        }
+        public static long GuestRequestCount = 10000001;
+
     }
 }
