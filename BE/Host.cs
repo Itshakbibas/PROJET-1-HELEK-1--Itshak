@@ -7,8 +7,12 @@ using System.Threading.Tasks;
 namespace BE
 {
     public class Host
+
     {
-        public static long countHost = 10000000;
+        List<string> PN = new List<string>() { "mickael", "itshak", "shmuel","Acher","raphael","Elie",
+            "Dov" };
+        List<string> FN = new List<string>() { "Balensi", "bibas", "Illouz", "Klein", "Bloch", "Drai", "Chriqui" };
+        Random r = new Random(DateTime.Now.Millisecond);
         public long HostKey { get; set; }
         public string PrivateName { get; set; }
         public string FamilyName { get; set; }
@@ -22,10 +26,10 @@ namespace BE
 
        public Host()
         {
-            HostKey = countHost++;
+            HostKey = Configuration.HostKeyCount++;
             PrivateName = "";
             FamilyName = "";
-            PhoneNumber = 00000000;
+            PhoneNumber = 000000000;
             MailAddress = PrivateName + FamilyName + "@" + "gmail.com";
             BankAccountNumber = 12345678;
             CollectionClearance = false;

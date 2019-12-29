@@ -12,7 +12,7 @@ namespace BE
         public long GuestRequestKey { get; set; }
         public long OrderKey { get; set; }
         public StatusOfOrder Status;
-        public DateTime CreateDate { get; set; }
+        public DateTime createDate { get; set; }
         public DateTime OrderDate { get; set; } 
         public override  string ToString()
         {

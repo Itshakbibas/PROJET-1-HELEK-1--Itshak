@@ -26,12 +26,19 @@ namespace DAL
             request.Status = CustomerRequirementStatus.transactionClosed;
         }
         //hostingUnit
-        public void deleteHostingUnit() { }
+        public void deleteHostingUnit(HostingUnit hosting) {
+            DS.DataSource.hostingUnitsList.Remove(hosting);
+        }
 
-        public void updateHostingUnit() { }
+        public void updateHostingUnit() 
+        { 
+            
+        }
 
         //Invitation
         public void updateOrder(Order order) {
+
+
         }
 
         //prints 
@@ -42,9 +49,22 @@ namespace DAL
         public void getAllHostingUnit() { }
         public void getAllOrder() { }
         public void getAllCustomer() { }
-       public  void getAllBranchesOfBank() { }
+       public  void getAllBranchesOfBank() 
+        
+        {
+                       
+        
+        }
 
+        public IEnumerable<GuestRequest> GetAllGuestRequests(Func<GuestRequest, bool> predicate = null)
+        {
+            if (predicate == null)
+                return DataSource.guestRequestList.AsEnumerable();
+            return from n in DataSource.guestRequestList
+                   where (predicate(n))
+                   select n;
 
+        }
 
 
 
