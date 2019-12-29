@@ -13,10 +13,11 @@ namespace BE
         public long HostingUnitKey { get; set; }
         public Host Owner { get; set; }
         public bool[,] Diary = new bool[12, 31];
+        public int CountOrder { get; set; }//number of order the room received
         public HostingUnit()
         {
             HostingUnitKey = countHostingUnit++;
-            
+            CountOrder = 0;
 
         }
         public   override string  ToString()

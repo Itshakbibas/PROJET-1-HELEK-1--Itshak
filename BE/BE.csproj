@@ -40,11 +40,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BankAccount.cs" />
+    <Compile Include="BankBranch.cs" />
     <Compile Include="BE.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="enum.cs" />
-    <Compile Include="GuestRequestkey.cs" />
+    <Compile Include="GuestRequest.cs" />
     <Compile Include="Host.cs" />
     <Compile Include="HostingUnit.cs" />
     <Compile Include="Order.cs" />

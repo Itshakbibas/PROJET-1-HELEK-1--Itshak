@@ -37,7 +37,10 @@ namespace BL
        public void printAllCustomer() { }
        public void printAllBranchesOfBank() { }
         // New Itshak2
-
+        public int HostingOrder(HostingUnit hosting)
+        {
+            return hosting.CountOrder;
+        }
 
     }
 }

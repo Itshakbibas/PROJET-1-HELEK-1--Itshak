@@ -14,19 +14,23 @@ namespace BE
         public string FamilyName { get; set; }
         public long PhoneNumber { get; set; }
         public string MailAddress { get; set; }
-        BankAccount BankBranchDetails { get; set; }
+        BankBranch BankBranchDetails { get; set; }
         public long BankAccountNumber { get; set; }
         public bool CollectionClearance { get; set; }
 
-        public Host(string privateName, string familyName, long phoneNumber,
-                    string suffix, string bankAccount)
+        public int CountHostingUnit{ get; set; }// number of rooms he owns 
+
+       public Host()
         {
             HostKey = countHost++;
-            PrivateName = privateName;
-            FamilyName = familyName;
-            PhoneNumber = phoneNumber;
-            MailAddress = privateName + "." + familyName + "@" + suffix;
-            BankAccount = bankAccount;
+            PrivateName = "";
+            FamilyName = "";
+            PhoneNumber = 00000000;
+            MailAddress = PrivateName + FamilyName + "@" + "gmail.com";
+            BankAccountNumber = 12345678;
+            CollectionClearance = false;
+            BankBranchDetails = new BankBranch();
+            CountHostingUnit = 0;
         }
         public override string ToString()
         {

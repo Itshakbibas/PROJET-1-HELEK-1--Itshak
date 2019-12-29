@@ -13,8 +13,7 @@ namespace BE
         public long OrderKey { get; set; }
         public StatusOfOrder Status;
         public DateTime CreateDate { get; set; }
-        public DateTime OrderDate { get; set; }
-
+        public DateTime OrderDate { get; set; } 
         public override  string ToString()
         {
             return"gsgs";
