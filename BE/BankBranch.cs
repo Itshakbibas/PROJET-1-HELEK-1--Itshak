@@ -8,18 +8,24 @@ namespace BE
 {
         public  class BankBranch
     {
-        private long BankNumber { get; set; }
-        private string BankName { get; set; }
-        private long BranchNumber { get; set; }
-        private string BranchAddress { get; set; }
-        private string BranchCity { get; set; }
-        private long BankAccountNumber { get; set; }
+
+        public Bank BankNumber { get; set; }
+        public string BankName { get; set; }
+        public int BranchNumber { get; set; }
+        public string BranchAddress { get; set; }
+        public string BranchCity { get; set; }
+
+        public BankBranch(){
+            BankNumber = Bank.bankHapoalim;
+            BankName = Bank.bankHapoalim.ToString();
+            BranchNumber = 0;
+            BranchAddress = "";
+            BranchCity = "";
+        }
+
         public override string ToString()
         {
-            return;
-        }
-        public BankBranch()
-        {
+            return "";
 
         }
     }

@@ -14,15 +14,15 @@ namespace BE
     }
     public enum StatusOfOrder
     {
-        NotYetAddressed,
-        anemailwassent,
-        closedduetostatusinconsistency,
-        Customer,
-        ClosesCustomersResponse
+        notYetAddressed,
+        MailWasSent,
+        closedDueLackOfCustomersResponse,
+        reserved
     }
 
     public enum TypeOfHostingUnit
     {
+        all,
         zimmer,
         apartment,
         roomOfHotel,
@@ -45,6 +45,19 @@ namespace BE
         optional
     }
 
-    
+
+    public enum Bank
+    {
+        bankHapoalim,
+        bankLeumi,
+        bankMizrahiTefahot,
+        firstInternationalBankOfIsrael,
+        israelDiscountBank,
+        mercantile,
+        BNP,
+        citibank,
+        HSBC
+    }
+
     //rajouter subArea
 }

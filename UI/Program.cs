@@ -10,10 +10,6 @@ namespace UI
     {
         static void Main(string[] args)
         {
-            GuestRequest g;
-            string name;
-           name= Console.ReadLine();
-            g.ID = name;
         }
     }
 }

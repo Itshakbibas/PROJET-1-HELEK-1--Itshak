@@ -8,10 +8,14 @@ namespace BE
 {
     public class Configuration
     {
+
         public static long HostKeyCount = 10000000;
         public static long HostingUnitCount = 10000000;
 
 
+
+
+       public static long GuestRequestCount = 10000001;
 
 
     }

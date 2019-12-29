@@ -15,46 +15,48 @@ namespace DAL
         {
             DS.DataSource.guestRequestList.Add(request);
         }
-        public void addHostingUnit(HostingUnit hosting)
+        public void addHostingUnit(HostingUnit unit)
         {
-            DS.DataSource.hostingUnitsList.Add(hosting);
+            DS.DataSource.hostingUnitsList.Add(unit);
         }
         public void addOrder(Order order) {
             DS.DataSource.ordersList.Add(order);
         }
+
+
+
         public void updateRequest(GuestRequest request) {
             request.Status = CustomerRequirementStatus.transactionClosed;
         }
-        //hostingUnit
-        public void deleteHostingUnit(HostingUnit hosting) {
-            DS.DataSource.hostingUnitsList.Remove(hosting);
-        }
 
-        public void updateHostingUnit() 
-        { 
-            
-        }
+        public void updateHostingUnit(HostingUnit unit) { }
 
-        //Invitation
-        public void updateOrder(Order order) {
-
-
-        }
-
-        //prints 
-        public void printAllHostingUnit() { }
-        public void printAllOrder() { }
-        public void printAllCustomer() { }
-        public void printAllBranchesOfBank() { }
-        public void getAllHostingUnit() { }
-        public void getAllOrder() { }
-        public void getAllCustomer() { }
-       public  void getAllBranchesOfBank() 
-        
+        public void updateOrder(Order order)
         {
-                       
-        
+
         }
+
+
+        //hostingUnit
+        public void deleteHostingUnit(HostingUnit unit) {
+            DS.DataSource.hostingUnitsList.Remove(unit);
+        }
+        //prints 
+
+        public List<HostingUnit> getAllHostingUnit() {
+            return DS.DataSource.hostingUnitsList;
+        }
+        public List<Order> getAllOrder() {
+            return DS.DataSource.ordersList;
+
+        }
+        public List<GuestRequest> getAllGuestRequest() {
+            return DS.DataSource.guestRequestList;
+        }
+        //creer list de bank branch qq part
+        public List<BankBranch> getAllBankBranch() {
+        return DS.DataSource.}
+
 
         public IEnumerable<GuestRequest> GetAllGuestRequests(Func<GuestRequest, bool> predicate = null)
         {

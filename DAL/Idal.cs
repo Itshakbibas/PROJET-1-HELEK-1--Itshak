@@ -12,12 +12,11 @@ namespace DAL
     public interface Idal
     {
         //request
-
+        #region add
         void addRequest(GuestRequest guest);
         void addHostingUnit(HostingUnit unit);
-
-
         void addOrder(Order order);
+
 
 
         void updateRequest();
@@ -36,7 +35,8 @@ namespace DAL
         IEnumerable<GuestRequest> GetAllGuestRequests(Func<GuestRequest, bool> predicate = null);
         IEnumerable<HostingUnit> GetAllHostingUnit(Func<HostingUnit, bool> predicate = null);
         IEnumerable<Order> GetAllOrder(Func<Order, bool> predicate = null);
-        //fusion avec master 
+
+     
     }
-   
+
 }
