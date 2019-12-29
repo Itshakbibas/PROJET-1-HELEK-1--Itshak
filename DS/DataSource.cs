@@ -12,7 +12,6 @@ namespace DS
         public static List<HostingUnit> hostingUnitsList { get; set; }
         public static List<GuestRequest> guestRequestList { get; set; }
         public static List<Order> ordersList { get; set; }
-        public static List<int> listequisertarien { get; set; }
 
         public DataSource()
         {

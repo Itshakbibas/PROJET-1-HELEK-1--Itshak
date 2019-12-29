@@ -8,11 +8,15 @@ namespace BE
 {
     public class GuestRequest
     {
-        public static long GuestRequestKey = 10000001;
+        public long GuestRequestKey ;
         public string PrivateName { get; set; }
         public string FamilyName { get; set; }
         public string MailAddress { get; set; }
         //status
+
+        //faut il definir le satut de CustomerRequirementStatus 
+        //dans le champs directement plutot que ds le ctor
+        //car interdit d'utiliser ctor d'apres ennoncé
         public CustomerRequirementStatus Status { get; set; }
         public DateTime RegistrationDate { get; set; }
         public DateTime EntryDate { get; set; }
@@ -20,7 +24,6 @@ namespace BE
         //area
         public TypeAreaOfTheCountry Area { get; set; }
         //subArea
-        //type hostingUnit
         public TypeOfHostingUnit Type { get; set; }
         public int Adults { get; set; }
         public int Children { get; set; }
@@ -30,13 +33,26 @@ namespace BE
         public Options ChildrensAttractions { get; set; }
         public GuestRequest()
         {
+            GuestRequestKey = Configuration.GuestRequestCount++;
             PrivateName = "";
             FamilyName = "";
             MailAddress = "";
             Status = CustomerRequirementStatus.active;
+            RegistrationDate = new DateTime(2000,1,1);
+            EntryDate = new DateTime(2000, 1, 1);
+            ReleaseDate= new DateTime(2000, 1, 1);
+            Area = TypeAreaOfTheCountry.all;
+            Type = TypeOfHostingUnit.all;
+            Adults = 1;
+            Children = 0;
+            Pool = Options.optional;
+            Garden = Options.optional;
+            ChildrensAttractions = Options.optional;
 
         }
-        public override string ToString() { return ""; }
+        public override string ToString() { 
+            return string.Format(""); 
+        }
 
     }
 }

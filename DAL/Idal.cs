@@ -12,31 +12,27 @@ namespace DAL
     public interface Idal
     {
         //request
-
+        #region add
         void addRequest(GuestRequest guest);
         void addHostingUnit(HostingUnit unit);
-
-
         void addOrder(Order order);
-
-
-        void updateRequest();
-        void updateHostingUnit();
-        void updateOrder();
-
-        void deleteHostingUnit();
-
-
-        //get 
-        void getAllHostingUnit();
-        void getAllOrder();
-        void getAllCustomer();
-        void getAllBranchesOfBank();
-
-       // IEnumerable<GuestRequest> GetAllGuestRequests(Func<GuestRequest, bool> predicate = null);
+        #endregion
+        #region update
+        void updateRequest(GuestRequest guest);
+        void updateHostingUnit(HostingUnit unit);
+        void updateOrder(Order order);
+        #endregion
+        void deleteHostingUnit(HostingUnit unit);
+        #region getters
+        List<HostingUnit> getAllHostingUnit();
+        List<Order> getAllOrder();
+        List<GuestRequest> getAllGuestRequest();
+        List<BankBranch> getAllBankBranch();
+        #endregion
+        // IEnumerable<GuestRequest> GetAllGuestRequests(Func<GuestRequest, bool> predicate = null);
         //IEnumerable<HostingUnit> GetAllHostingUnit(Func<HostingUnit, bool> predicate = null);
         //IEnumerable<Order> GetAllOrder(Func<Order, bool> predicate = null);
         //fusion avec master 
     }
-   
+
 }
