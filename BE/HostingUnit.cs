@@ -9,18 +9,22 @@ namespace BE
     public class HostingUnit
     {
         /*test git*/
-        public static long countHostingUnit = 10000000;
-        public long HostingUnitKey { get; set; }
+       
+        public  long HostingUnitKey;
+        public string HostingUnitName { get; set; }
         public Host Owner { get; set; }
         public bool[,] Diary = new bool[12, 31];
+        public int CountOrder { get; set; }//number of order the room received
         public HostingUnit()
         {
-            HostingUnitKey = countHostingUnit++;
+            HostingUnitKey = Configuration.HostingUnitCount++;
+            HostingUnitName = "";
+            CountOrder = 0;
 
         }
-        public override ToString()
+        public   override string  ToString()
         {
-            return;
+            return "fsgh";
         }
 
     }

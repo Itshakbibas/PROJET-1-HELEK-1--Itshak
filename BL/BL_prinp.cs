@@ -10,9 +10,15 @@ using System.Threading;
 namespace BL
 {
     public class BL_prinp:IBL
+
     {
-       public  void addRequest(GuestRequest g)   {
-            
+        IDAL dal = FactoryDal.GetDal();
+
+        public  void addRequest(GuestRequest g)   {
+            int firstmonth = Int32.Parse(g.EntryDate.Substring(3));
+            int firstday = Int32.Parse(g.EntryDate.Substring(0, 2));
+            int lastmonth = Int32.Parse(g.ReleaseDate.Substring(3));
+            int lastday = Int32.Parse(g.ReleaseDate.Substring(0, 2));
         }
        public void updateRequest(GuestRequest g) { }
        //hostingUnit
@@ -22,13 +28,28 @@ namespace BL
 
         //Invitation
         public void addOrder(Order order) { }
-        public void UpdateOrder(Order order) { }
+        public void UpdateOrder(Order order)         
+        {
+        
+        
+        }
 
         //prints 
         public void printAllHostingUnit() { }
        public void printAllOrder() { }
        public void printAllCustomer() { }
        public void printAllBranchesOfBank() { }
+        // New Itshak2
+        public int HostingOrder(HostingUnit hosting)
+        {
+            return hosting.CountOrder;
+        }
+        public IEnumerable<GuestRequest> GetAllGuestRequests(Func<GuestRequest, bool> predicate = null)
+        {
+            //if (predicate == null)
+            return dal.guestRequestList(predicate);
+        }
+
 
 
     }

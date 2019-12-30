@@ -7,26 +7,34 @@ using System.Threading.Tasks;
 namespace BE
 {
     public class Host
-    {
-        public static long countHost = 10000000;
-        public long HostKey { get; set; }
-        public string PrivateName { get; set; }
-        public string FamilyName { get; set; }
-        public long PhoneNumber { get; set; }
-        public string MailAddress { get; set; }
-        BankBranch BankBranchDetails { get; set; }
-        public long BankAccountNumber { get; set; }
-        public bool CollectionClearance { get; set; }
 
-        public Host(string privateName, string familyName, long phoneNumber,
-                    string suffix, string bankAccount)
+    {
+        List<string> PN = new List<string>() { "mickael", "itshak", "shmuel","Acher","raphael","Elie",
+            "Dov" };
+        List<string> FN = new List<string>() { "Balensi", "bibas", "Illouz", "Klein", "Bloch", "Drai", "Chriqui" };
+        Random r = new Random(DateTime.Now.Millisecond);
+        public long hostKey { get; set; }
+        public string privateName { get; set; }
+        public string familyName { get; set; }
+        public long phoneNumber { get; set; }
+        public string mailAddress { get; set; }
+        BankBranch bankBranchDetails { get; set; }
+        public long bankAccountNumber { get; set; }
+        public bool collectionClearance { get; set; }
+
+        public int countHostingUnit{ get; set; }// number of rooms he owns 
+
+       public Host()
         {
-            HostKey = countHost++;
-            PrivateName = privateName;
-            FamilyName = familyName;
-            PhoneNumber = phoneNumber;
-            MailAddress = privateName + "." + familyName + "@" + suffix;
-            BankAccount = bankAccount;
+            hostKey = Configuration.hostKeyCount++;
+            privateName = "";
+            familyName = "";
+            phoneNumber = 000000000;
+            mailAddress = privateName + familyName + "@" + "gmail.com";
+            bankAccountNumber = 12345678;
+            collectionClearance = false;
+            bankBranchDetails = new BankBranch();
+            countHostingUnit = 0;
         }
         public override string ToString()
         {

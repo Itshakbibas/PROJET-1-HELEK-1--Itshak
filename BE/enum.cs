@@ -15,7 +15,7 @@ namespace BE
     public enum StatusOfOrder
     {
         notYetAddressed,
-        MailWasSent,
+        mailWasSent,
         closedDueLackOfCustomersResponse,
         reserved
     }
@@ -45,6 +45,7 @@ namespace BE
         optional
     }
 
+
     public enum Bank
     {
         bankHapoalim,
@@ -57,6 +58,6 @@ namespace BE
         citibank,
         HSBC
     }
-    
+
     //rajouter subArea
 }

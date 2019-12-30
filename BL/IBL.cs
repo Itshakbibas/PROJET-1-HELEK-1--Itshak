@@ -20,21 +20,23 @@ namespace BL
         void updateRequest(GuestRequest request);
 
         //hostingUnit
-        void deleteHostingUnit();
-        void updateHostingUnit();
+     void addHostingUnit(HostingUnit h);
+        void deleteHostingUnit(HostingUnit h);
+        void updateHostingUnit(HostingUnit h);
 
         //Invitation
         void UpdateOrder(Order order);
 
         //prints 
-        void printAllHostingUnit();
-        void printAllOrder();
+        void printAllHostingUnit(HostingUnit h);
+        void printAllOrder(HostingUnit h);
         void printAllCustomer();
         void printAllBranchesOfBank();
+
+        IEnumerable <GuestRequest> GetAllGuestRequests(Func <GuestRequest,bool>predicate=null);
+        IEnumerable <HostingUnit> GetAllHostingUnit(Func <HostingUnit,bool>predicate=null);
+        IEnumerable <Order> GetAllOrder(Func <Order,bool>predicate=null);
         
-        //IEnumerable <GuestRequest> GetAllGuestRequests(Func <GuestRequest,bool>predicate=null);
-        //IEnumerable <HostingUnit> GetAllHostingUnit(Func <HostingUnit,bool>predicate=null);
-        //IEnumerable <Order> GetAllOrder(Func <Order,bool>predicate=null);
 
     }
 }

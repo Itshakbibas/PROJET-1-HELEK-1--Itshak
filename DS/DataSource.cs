@@ -24,5 +24,19 @@ namespace DS
             guestRequestList = new List<GuestRequest>();
             ordersList = new List<Order>();
         }
+        public static string GuestRequestList()
+        {
+            string str = "";
+            string t = "\t";
+
+            foreach (GuestRequest m in guestRequestList)
+            {
+                
+            }
+            return str;
+        }
+
+
+
     }
 }
