@@ -15,7 +15,7 @@ namespace BE
     public enum StatusOfOrder
     {
         notYetAddressed,
-        MailWasSent,
+        mailWasSent,
         closedDueLackOfCustomersResponse,
         reserved
     }

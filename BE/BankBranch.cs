@@ -6,21 +6,22 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-        public  class BankBranch
+    //changement nom en minuscule
+    public class BankBranch
     {
 
-        public Bank BankNumber { get; set; }
-        public string BankName { get; set; }
-        public int BranchNumber { get; set; }
-        public string BranchAddress { get; set; }
-        public string BranchCity { get; set; }
+        public Bank bankNumber { get; set; }
+        public string bankName { get; set; }
+        public int branchNumber { get; set; }
+        public string branchAddress { get; set; }
+        public string branchCity { get; set; }
 
         public BankBranch(){
-            BankNumber = Bank.bankHapoalim;
-            BankName = Bank.bankHapoalim.ToString();
-            BranchNumber = 0;
-            BranchAddress = "";
-            BranchCity = "";
+            bankNumber = Bank.bankHapoalim;
+            bankName = Bank.bankHapoalim.ToString();
+            branchNumber = 0;
+            branchAddress = "";
+            branchCity = "";
         }
 
         public override string ToString()
