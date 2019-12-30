@@ -29,6 +29,7 @@ namespace DAL
             request.Status = CustomerRequirementStatus.transactionClosed;
         }
 
+
         public void updateHostingUnit(HostingUnit unit) { }
 
         public void updateOrder(Order order)
@@ -43,6 +44,7 @@ namespace DAL
         }
         //prints 
 
+
         public List<HostingUnit> getAllHostingUnit() {
             return DS.DataSource.hostingUnitsList;
         }
@@ -56,6 +58,7 @@ namespace DAL
         //creer list de bank branch qq part
         public List<BankBranch> getAllBankBranch() {
         return DS.DataSource.}
+
 
 
         public IEnumerable<GuestRequest> GetAllGuestRequests(Func<GuestRequest, bool> predicate = null)
