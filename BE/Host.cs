@@ -6,13 +6,9 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    public class Host
+    public class Host : Clonable
 
     {
-        List<string> PN = new List<string>() { "mickael", "itshak", "shmuel","Acher","raphael","Elie",
-            "Dov" };
-        List<string> FN = new List<string>() { "Balensi", "bibas", "Illouz", "Klein", "Bloch", "Drai", "Chriqui" };
-        Random r = new Random(DateTime.Now.Millisecond);
         public long hostKey { get; set; }
         public string privateName { get; set; }
         public string familyName { get; set; }
@@ -38,7 +34,15 @@ namespace BE
         }
         public override string ToString()
         {
-            return;
+            return "hostKey : " + hostKey + "\n" +
+                "privateName : " + privateName + "\n" +
+                "familyName : " + familyName + "\n" +
+                " phoneNumber : " + phoneNumber + "\n" +
+                "mailAddress : " + mailAddress + "\n" +
+                "bankAccountNumber : " + bankAccountNumber + "\n" +
+                "collectionClearance : " + collectionClearance + "\n" +
+                "bankBranchDetails : " + bankBranchDetails + "\n" +
+                "countHostingUnit : " + countHostingUnit;
         }
 
     }

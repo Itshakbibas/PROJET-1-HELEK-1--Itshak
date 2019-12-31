@@ -6,19 +6,16 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    public class Order
+    public class Order : Clonable
     {
 
-        public long HostingUnitKey { get; set; }
-        public long GuestRequestKey { get; set; }
-        public long OrderKey { get; set; }
-        public StatusOfOrder Status;
+        public long hostingUnitKey { get; set; }
+        public long guestRequestKey { get; set; }
+        public long orderKey { get; set; }
+        public StatusOfOrder status { get; set; }
         public DateTime createDate { get; set; }
-        public DateTime OrderDate { get; set; } 
+        public DateTime orderDate { get; set; } 
        
-
-
-
         public Order()
         {
             hostingUnitKey = 00000000;
@@ -30,7 +27,12 @@ namespace BE
         }
         public override string ToString()
         {
-            return "";
+            return "hostingUnitKey : " + hostingUnitKey + "\n" +
+                "guestRequestKey : " + guestRequestKey + "\n" +
+                "orderKey : " + orderKey + "\n" +
+                "status : " + status + "\n" +
+                "createDate : " + createDate + "\n" +
+                "orderDate : " + orderDate + "\n";
         }
     }
 }

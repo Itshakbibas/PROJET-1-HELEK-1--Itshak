@@ -7,16 +7,14 @@ using System.Threading.Tasks;
 namespace BE
 {
     //changement nom en minuscule
-    public class GuestRequest
+    public class GuestRequest : Clonable
     {
-
+        //faut il rajouter un ID ?
         public long guestRequestKey { get; set; }
         public string privateName { get; set; }
         public string familyName { get; set; }
         public string mailAddress { get; set; }
         //status
-
-
         //faut il definir le satut de CustomerRequirementStatus 
         //dans le champs directement plutot que ds le ctor
         //car interdit d'utiliser ctor d'apres ennoncé
@@ -25,10 +23,8 @@ namespace BE
         public DateTime registrationDate { get; set; }
         public DateTime entryDate { get; set; }
         public DateTime releaseDate { get; set; }
-        //area
         public TypeAreaOfTheCountry area { get; set; }
         //subArea
-
         public TypeOfHostingUnit type { get; set; }
         public int adults { get; set; }
         public int children { get; set; }
@@ -36,6 +32,7 @@ namespace BE
         public Options jacuzzi { get; set; }
         public Options garden { get; set; }
         public Options childrensAttractions { get; set; }
+        //doit onn laisser le ctor, sinon attention au compte de Configuration.guestRequestCount++;
         public GuestRequest()
         {
 
@@ -57,7 +54,23 @@ namespace BE
 
         }
         public override string ToString() { 
-            return string.Format(""); 
+            return string.Format(
+                "guestRequestKey : " + guestRequestKey +"\n"+
+                "privateName : " + privateName + "\n" +
+                "familyName : " + familyName + "\n" +
+                "mailAddress : " + mailAddress + "\n" +
+                "status : " + status + "\n" +
+                "registrationDate : " + registrationDate + "\n" +
+                "entryDate : " + entryDate + "\n" +
+                "releaseDate : " + releaseDate + "\n" +
+                "area : " + area + "\n" +
+                "type : " + type + "\n" +
+                "adults : " + adults + "\n" +
+                "children : " + children + "\n" +
+                "pool : " + pool + "\n" +
+                "garden : " + garden + "\n" +
+                "childrensAttractions : " + childrensAttractions + "\n" 
+                ); 
         }
 
 
