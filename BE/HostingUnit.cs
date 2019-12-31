@@ -14,41 +14,45 @@ namespace BE
         public string HostingUnitName { get; set; }
         public Host Owner { get; set; }
         public bool[,] Diary = new bool[12, 31];
-        public int places;
-
+        public int Adultplaces;
+        public int Childrenplaces;
         public int CountOrder { get; set; }//number of order the room received
         public HostingUnit()
         {
-            HostingUnitKey = Configuration.HostingUnitCount++;
+            HostingUnitKey = Configuration.HostingUnitCount;
             HostingUnitName = "";
             CountOrder = 0;
 
         }
         public   override string  ToString()
         {
-            return "fsgh";
-        }
-        public bool IsRoomFree(int EntryDate,int ReleaseDate)
+            return    "HostingUnitKey : " + HostingUnitKey + "\n" +
+                      "HostingUnitName : " + HostingUnitName + "\n" +
+                      "Adultplaces : "  + Adultplaces + "\n" +
+                      "Childrenplaces : " + Childrenplaces + "\n";        }
+        public bool isRoomFree(DateTime entryDate,int numberVacationsDays)
         {
-            string beginday = EntryDate.ToString();
-            string endday = ReleaseDate.ToString();
+           
+            string beginday = entryDate.ToString();
 
-            int firstday = Int32.Parse(beginday.Substring(0, 2));
-            int firstmonth= Int32.Parse(beginday.Substring(3, 5));
-            int lastday= Int32.Parse(endday.Substring(0, 2));
-            int lastmonth= Int32.Parse(beginday.Substring(3, 5));
-            firstday -= 1;
-            firstmonth -= 1;
-            lastday -= 1;
-            lastmonth -= 1;
-            for (int j=firstday,i=firstmonth;j!=lastday || i!=lastmonth;j++)
+            int firstDay = Int32.Parse(beginday.Substring(0, 2));
+            int firstMonth= Int32.Parse(beginday.Substring(3, 5));
+           
+            firstDay -= 1;
+            firstMonth -= 1;
+            while(numberVacationsDays != 0)
             {
-                if (Diary[i, j])
+                if (Diary[firstMonth, firstDay++])//if one's of the day is already taken 
                     return false;
-                if (j == 30) i++;j =-1;
+
+                if (firstDay == 31) { firstMonth++; firstDay = 0; }//if we got to the end of the month
+               
+                numberVacationsDays--;//
             }
+
 
             return true;
         }
+
 
     }

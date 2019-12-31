@@ -15,23 +15,29 @@ namespace DAL
         
         public void addRequest(GuestRequest request)
         {
-            DS.DataSource.guestRequestList.Add(request);
+            if (DataSource.guestRequestList.Exists(x => x.ID == request.ID))//check if the mispar teoudat zeout is present 
+                throw new Exception("your  ID is already present ");
+
+            Configuration.GuestRequestCount++;//to advance the Static GuestRequestKey
+        
+            
+            DataSource.guestRequestList.Add(request);
         }
         public void addHostingUnit(HostingUnit unit)
         {
+
+
+            Configuration.HostingUnitCount++;
             DS.DataSource.hostingUnitsList.Add(unit);
         }
         public void addOrder(Order order) {
+           
+
             List<GuestRequest> guestreq = DataSource.guestRequestList;
             List<HostingUnit> hosting = DataSource.hostingUnitsList;
             List<Order> inv = DataSource.ordersList;
-            //List<> guestreq = DataSource.guestRequestList;
-            if (!)
 
-
-
-
-            // DS.DataSource.ordersList.Add(order);
+             DS.DataSource.ordersList.Add(order);
         }
 
 
@@ -44,32 +50,20 @@ namespace DAL
 
         public void updateOrder(Order order)
         {
-            List<Order> l = DataSource.ordersList;
+            List<GuestRequest> l = DataSource.guestRequestList;
             if (l.Exists(x => x.GuestRequestKey == order.GuestRequestKey))
-                Order O = l.Find(x => x.GuestRequestKey == order.GuestRequestKey);
+                
+                    
+                    
+                    //Order O = l.Find(x => x.GuestRequestKey == order.GuestRequestKey);
 
         }
 
 
         //hostingUnit
-        public void deleteHostingUnit(HostingUnit unit) {
-            DS.DataSource.hostingUnitsList.Remove(unit);
-        }
-        //prints 
 
-        public List<HostingUnit> getAllHostingUnit() {
-            return DS.DataSource.hostingUnitsList;
-        }
-        public List<Order> getAllOrder() {
-            return DS.DataSource.ordersList;
-
-        }
-        public List<GuestRequest> getAllGuestRequest() {
-            return DS.DataSource.guestRequestList;
-        }
         //creer list de bank branch qq part
-        public List<BankBranch> getAllBankBranch() {
-        return DS.DataSource.}
+       
 
 
         public IEnumerable<GuestRequest> GetAllGuestRequests(Func<GuestRequest, bool> predicate = null)
@@ -85,20 +79,30 @@ namespace DAL
         {
             if (predicate == null)
                 return DataSource.ordersList.AsEnumerable();
-            return DataSource.ordersList.Where(predicate);
+            return from n in DataSource.ordersList
+                   where (predicate(n))
+                   select n;
 
         }
         public IEnumerable<HostingUnit> GetAllHostingUnit(Func<HostingUnit, bool> predicate = null)
         {
             if (predicate == null)
                 return DataSource.hostingUnitsList.AsEnumerable();
-            return DataSource.hostingUnitsList.Where(predicate);
+            
 
-            /* return from n in DataSource.hostingUnitsList
+             return from n in DataSource.hostingUnitsList
                    where (predicate(n))
-                   select n;*/
+                   select n;
 
         }
+        public IEnumerable<BankBranch> bankBranchList()
+           List<BankBranch> bankbranchList = new List<BankBranch>();
+             
+
+
+
+            List<BankBranch> snifBankList =
+
 
     }
 }

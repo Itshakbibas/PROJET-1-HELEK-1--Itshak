@@ -10,7 +10,7 @@ namespace BE
     {
 
         public long GuestRequestKey ;
-
+       // public int ID; pas sur 
         public string PrivateName { get; set; }
         public string FamilyName { get; set; }
         public string MailAddress { get; set; }
@@ -40,7 +40,7 @@ namespace BE
         public GuestRequest()
         {
 
-            GuestRequestKey = Configuration.GuestRequestCount++;
+            GuestRequestKey = Configuration.GuestRequestCount;
 
             PrivateName = "";
             FamilyName = "";

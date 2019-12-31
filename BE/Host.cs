@@ -39,7 +39,11 @@ namespace BE
         }
         public override string ToString()
         {
-            return;
+            return "PrivateName:" + PrivateName +"\n"
+                    
+                
+                
+                ;
         }
 
     }

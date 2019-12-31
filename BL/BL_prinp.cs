@@ -29,9 +29,9 @@ namespace BL
         public void addOrder(Order order)
         {
 
-            if (freerooms(2,7)==null)
+            if (freeRooms(order 5,7)==null)
             {
-                throw new Exception("sorry there isn't any free room ")
+                throw new Exception("sorry there isn't any free room ");
             }
 
             dal.addOrder(order);
@@ -70,21 +70,23 @@ namespace BL
             return dal.GetAllHostingUnit(predicate);
         }
 
-        public void checkDate(GuestRequest guestreq)
+        public void checkDate(GuestRequest request)
         {
-            string firstday = guestreq.EntryDate.ToString();
-            string lastday = guestreq.ReleaseDate.ToString();
-            if (Int32.Parse(firstday.Substring(3, 5)) < Int32.Parse(lastday.Substring(3, 5)))
+            string firstday = request.EntryDate.ToString();
+            string lastday = request.ReleaseDate.ToString();
+            if (Int32.Parse(firstday.Substring(3, 5)) > Int32.Parse(lastday.Substring(3, 5)))
                 throw new Exception("the entrydate is not valuable");
-            if (Int32.Parse(firstday.Substring(3, 5)) < Int32.Parse(lastday.Substring(3, 5)) && Int32.Parse(firstday.Substring(0, 2)) - Int32.Parse(lastday.Substring(0, 2)) < 2)
+            if (Int32.Parse(firstday.Substring(3, 5)) > Int32.Parse(lastday.Substring(3, 5)) && Int32.Parse(firstday.Substring(0, 2)) - Int32.Parse(lastday.Substring(0, 2)) < 2)
             {
                 throw new Exception("the entrydate is not valuable");
             }
+            
         }
-        public IEnumerable<HostingUnit> freerooms(int EntryDate,int ReleaseDate)
+        public IEnumerable<HostingUnit> freeRooms(DateTime entryDate,int numberVacationsDays)
         {
-            return from n in GetAllHostingUnit()
-                   where n.IsRoomFree(EntryDate, ReleaseDate) 
-                   select n;
+            IEnumerable<HostingUnit> freeRoomsList = from n in GetAllHostingUnit()
+                                            where n.isRoomFree(entryDate, numberVacationsDays) 
+                                            select n;
+            return freeRoomsList;
         }
     }
