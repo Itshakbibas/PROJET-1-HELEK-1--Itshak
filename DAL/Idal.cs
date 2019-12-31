@@ -32,16 +32,6 @@ namespace DAL
         IEnumerable<Order> getAllOrder(Func<Order, bool> predicate = null);
 
         #endregion
-
-
-
-
-
-
-        //get 
-
-
-
     }
 
 }

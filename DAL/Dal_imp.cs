@@ -32,7 +32,9 @@ namespace DAL
 
             //request.status = CustomerRequirementStatus.transactionClosed;
         }
+
         public IEnumerable<GuestRequest> getAllGuestRequest(Func<GuestRequest, bool> predicate = null)
+
         {
             if (predicate == null)
                 return DataSource.guestRequestList.AsEnumerable();
@@ -45,12 +47,14 @@ namespace DAL
 
         #region hostingUnitFunctions
 
+
         public void addHostingUnit(HostingUnit unit)
         {
             HostingUnit unitLocal = getHostingUnit(unit.hostingUnitKey);
             if (unitLocal != null)
                 throw new Exception("there is already an unit with the same hostingUnitKey");
             DataSource.hostingUnitList.Add(unit);
+
         }
         public HostingUnit getHostingUnit(long key)
         {
@@ -62,6 +66,7 @@ namespace DAL
                 throw new Exception("hostingUnit with this number was not found...");
             DS.DataSource.hostingUnitList[index] = unit;
         }
+
         public void deleteHostingUnit(HostingUnit unit)
         {
             HostingUnit unitLocal = getHostingUnit(unit.hostingUnitKey);
@@ -70,6 +75,7 @@ namespace DAL
             DataSource.hostingUnitList.Remove(unit);
         }
         public IEnumerable<HostingUnit> getAllHostingUnit(Func<HostingUnit, bool> predicate = null)
+
         {
             if (predicate == null)
                 return DataSource.hostingUnitList.AsEnumerable();
