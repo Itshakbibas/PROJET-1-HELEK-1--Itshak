@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace BE
 {
     //changement nom en minuscule
-    public class BankBranch
+    public class BankBranch : Clonable
     {
 
         public Bank bankNumber { get; set; }
