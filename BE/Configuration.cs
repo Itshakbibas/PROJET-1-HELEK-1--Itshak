@@ -9,13 +9,14 @@ namespace BE
     public class Configuration
     {
 
-        public static long HostKeyCount = 10000000;
+        public static long HostKeyCount { get; set; }
         public static long HostingUnitCount = 10000000;
+        Fullprop        
 
 
 
 
-       public static long GuestRequestCount = 10000000;
+       public static long guestRequestCount = 10000000;
 
 
     }

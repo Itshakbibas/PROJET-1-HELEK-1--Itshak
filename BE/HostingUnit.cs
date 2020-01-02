@@ -9,13 +9,18 @@ namespace BE
     public class HostingUnit
     {
         /*test git*/
-       
-        public  long HostingUnitKey;
+
+        public long HostingUnitKey;
         public string HostingUnitName { get; set; }
         public Host Owner { get; set; }
         public bool[,] Diary = new bool[12, 31];
         public int Adultplaces;
         public int Childrenplaces;
+        public bool jacuzzi { get; set; }
+        public bool pool { get; set; }
+        public bool garden { get; set; }
+        public bool childrensAttractions { get; set; }
+
         public int CountOrder { get; set; }//number of order the room received
         public HostingUnit()
         {
@@ -24,29 +29,33 @@ namespace BE
             CountOrder = 0;
 
         }
-        public   override string  ToString()
+        public TypeOfHostingUnit typeUnit { get; set; }
+        public TypeAreaOfTheCountry typeArea {get;set;}
+
+        public override string ToString()
         {
-            return    "HostingUnitKey : " + HostingUnitKey + "\n" +
+            return "HostingUnitKey : " + HostingUnitKey + "\n" +
                       "HostingUnitName : " + HostingUnitName + "\n" +
-                      "Adultplaces : "  + Adultplaces + "\n" +
-                      "Childrenplaces : " + Childrenplaces + "\n";        }
-        public bool isRoomFree(DateTime entryDate,int numberVacationsDays)
+                      "Adultplaces : " + Adultplaces + "\n" +
+                      "Childrenplaces : " + Childrenplaces + "\n";
+        }
+        public bool isRoomFree(DateTime entryDate, int numberVacationsDays)
         {
-           
+
             string beginday = entryDate.ToString();
 
             int firstDay = Int32.Parse(beginday.Substring(0, 2));
-            int firstMonth= Int32.Parse(beginday.Substring(3, 5));
-           
+            int firstMonth = Int32.Parse(beginday.Substring(3, 5));
+
             firstDay -= 1;
             firstMonth -= 1;
-            while(numberVacationsDays != 0)
+            while (numberVacationsDays != 0)
             {
                 if (Diary[firstMonth, firstDay++])//if one's of the day is already taken 
                     return false;
 
                 if (firstDay == 31) { firstMonth++; firstDay = 0; }//if we got to the end of the month
-               
+
                 numberVacationsDays--;//
             }
 
@@ -54,5 +63,6 @@ namespace BE
             return true;
         }
 
-
     }
+}
+    

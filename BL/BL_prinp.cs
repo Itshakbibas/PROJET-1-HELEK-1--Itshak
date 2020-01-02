@@ -15,8 +15,15 @@ namespace BL
         Idal dal = FactoryDal.GetDal();
 
         public void addRequest(GuestRequest guestreq) {
+
+
+
             checkDate(guestreq);
 
+
+
+
+            dal.addRequest(guestreq);
 
         }
         public void updateRequest(GuestRequest g) { }
@@ -28,24 +35,23 @@ namespace BL
         //Invitation
         public void addOrder(Order order)
         {
-
-            if (freeRooms(order 5,7)==null)
-            {
-                throw new Exception("sorry there isn't any free room ");
-            }
-
-            dal.addOrder(order);
-
-
-
-            List<GuestRequest> guestreq = DataSource.guestRequestList;
-            List<HostingUnit> hosting = DataSource.hostingUnitsList;
-            List<Order> inv = DataSource.ordersList;
-
+            List<HostingUnit> l = new List<HostingUnit>(); 
+            foreach( HostingUnit n  in GetAllHostingUnit())
+                {
+                     l.Add(groupUnitByAreaList())   
+                }
+            
 
         }
         public void updateOrder(Order order)
         {
+            if (checkTransactionSigned(order))
+            {
+                order.status = StatusOfOrder.MailWasSent;
+
+            }
+
+
             dal.updateOrder(order);
         }
 
@@ -59,34 +65,68 @@ namespace BL
         {
             return hosting.CountOrder;
         }
-        public IEnumerable<GuestRequest> GetAllGuestRequests(Func<GuestRequest, bool> predicate = null)
+        public IEnumerable<GuestRequest> getAllGuestRequest(Func<GuestRequest, bool> predicate = null)
         {
             //if (predicate == null)
-            return dal.GetAllGuestRequests(predicate);
+            return dal.getAllGuestRequest(predicate);
         }
         public IEnumerable<HostingUnit> GetAllHostingUnit(Func<HostingUnit, bool> predicate = null)
         {
             //if (predicate == null)
-            return dal.GetAllHostingUnit(predicate);
+            return dal.getAllHostingUnit(predicate);
         }
-
+        #region functions
         public void checkDate(GuestRequest request)
         {
-            string firstday = request.EntryDate.ToString();
-            string lastday = request.ReleaseDate.ToString();
-            if (Int32.Parse(firstday.Substring(3, 5)) > Int32.Parse(lastday.Substring(3, 5)))
+            string firstday = request.entryDate.ToString();
+            string lastday = request.releaseDate.ToString();
+            if (Int32.Parse(firstday.Substring(3, 5)) < Int32.Parse(lastday.Substring(3, 5)))
                 throw new Exception("the entrydate is not valuable");
-            if (Int32.Parse(firstday.Substring(3, 5)) > Int32.Parse(lastday.Substring(3, 5)) && Int32.Parse(firstday.Substring(0, 2)) - Int32.Parse(lastday.Substring(0, 2)) < 2)
+            if (Int32.Parse(firstday.Substring(3, 5)) == Int32.Parse(lastday.Substring(3, 5)) && Int32.Parse(lastday.Substring(0, 2)) - Int32.Parse(firstday.Substring(0, 2)) < 1)
             {
                 throw new Exception("the entrydate is not valuable");
             }
-            
+
         }
-        public IEnumerable<HostingUnit> freeRooms(DateTime entryDate,int numberVacationsDays)
+        public IEnumerable<HostingUnit> getFreeUnitList(DateTime entryDate, int numberVacationsDays)
         {
-            IEnumerable<HostingUnit> freeRoomsList = from n in GetAllHostingUnit()
-                                            where n.isRoomFree(entryDate, numberVacationsDays) 
-                                            select n;
-            return freeRoomsList;
+            return from n in GetAllHostingUnit()
+                   where n.isRoomFree(entryDate, numberVacationsDays) //verifie depuis la datedentre jusquau nombre de jours de fin 
+                   select n;
         }
+
+
+
+        public bool checkTransactionSigned(Order order)
+        {
+
+            GuestRequest req = getAllGuestRequest().FirstOrDefault(x => x.guestRequestKey == order.guestRequestKey);
+            return req.transactionSigned;
+        }
+        public IEnumerable<IGrouping<TypeAreaOfTheCountry, HostingUnit>> groupUnitByAreaList(bool flag)
+        {
+            return from unit in GetAllHostingUnit()
+                   group unit by unit.typeArea;
+                   
+        }
+       /* public IEnumerable<IGrouping<int, Host>>groupHostByNumOfUnitList()
+        {
+            return from unit in GetAllHostingUnit()
+                   group unit by unit.typeArea;
+        }*/
+        public IEnumerable<IGrouping<TypeAreaOfTheCountry, GuestRequest>> groupRequestByAreaList()
+        {
+            return from request in getAllGuestRequest()
+                   group request by request.area into areagroup;
+//                   select new { area = areagroup.Key, request = areagroup };
+
+        }
+        public IEnumerable<IGrouping<int, GuestRequest>> groupRequestByNumOfperson()
+        {
+            return from request in getAllGuestRequest()
+                   group request by request.adults + request.children;
+        }
+
+        #endregion
     }
+}
