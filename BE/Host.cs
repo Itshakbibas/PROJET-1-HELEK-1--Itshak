@@ -22,7 +22,7 @@ namespace BE
 
        public Host()
         {
-            hostKey = Configuration.hostKeyCount++;
+            hostKey = Configuration.hostKeyCount;
             privateName = "";
             familyName = "";
             phoneNumber = 000000000;
