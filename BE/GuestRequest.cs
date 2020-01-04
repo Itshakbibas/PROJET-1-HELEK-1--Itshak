@@ -14,12 +14,13 @@ namespace BE
         public string privateName { get; set; }
         public string familyName { get; set; }
         public string mailAddress { get; set; }
-        //status
-        //faut il definir le satut de CustomerRequirementStatus 
-        //dans le champs directement plutot que ds le ctor
-        //car interdit d'utiliser ctor d'apres ennoncé
+        public bool  transactionSigned { get; set; }
+    //status
+    //faut il definir le satut de CustomerRequirementStatus 
+    //dans le champs directement plutot que ds le ctor
+    //car interdit d'utiliser ctor d'apres ennoncé
 
-        public CustomerRequirementStatus status { get; set; }
+    public CustomerRequirementStatus status { get; set; }
         public DateTime registrationDate { get; set; }
         public DateTime entryDate { get; set; }
         public DateTime releaseDate { get; set; }
@@ -36,7 +37,7 @@ namespace BE
         public GuestRequest()
         {
 
-            guestRequestKey = Configuration.guestRequestCount++;
+            guestRequestKey = Configuration.guestRequestCount;
             privateName = "";
             familyName = "";
             mailAddress = "";

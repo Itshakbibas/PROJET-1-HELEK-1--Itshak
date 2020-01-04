@@ -12,6 +12,7 @@ namespace DS
         public static List<HostingUnit> hostingUnitList { get; set; }
         public static List<GuestRequest> guestRequestList { get; set; }
         public static List<Order> orderList { get; set; }
+        public static List<BankBranch> bankBranchList;
 
         public DataSource()
         {
@@ -23,6 +24,48 @@ namespace DS
             hostingUnitList = new List<HostingUnit>();
             guestRequestList = new List<GuestRequest>();
             orderList = new List<Order>();
+            bankBranchList = new List<BankBranch>
+            {
+                new BankBranch{
+                    bankNumber = Bank.bankHapoalim,
+                    bankName = Bank.bankHapoalim.ToString(),
+                    branchNumber = 1,
+                    branchAddress = "21 street bayit-vegan",
+                    branchCity = "jerusalem"
+                },
+                new BankBranch
+                {
+                    bankNumber = Bank.bankHapoalim,
+                    bankName = Bank.bankHapoalim.ToString(),
+                    branchNumber = 2,
+                    branchAddress = "52 street uziel",
+                    branchCity = "jerusalem"
+                },
+                new BankBranch
+                {
+                    bankNumber = Bank.bankHapoalim,
+                    bankName = Bank.bankHapoalim.ToString(),
+                    branchNumber = 3,
+                    branchAddress = "25 street rotshild",
+                    branchCity = "tel-aviv"
+                },
+                new BankBranch
+                {
+                    bankNumber = Bank.bankLeumi,
+                    bankName = Bank.bankLeumi.ToString(),
+                    branchNumber = 1,
+                    branchAddress = "15 street shtraus",
+                    branchCity = "jerusalem"
+                },
+                new BankBranch
+                {
+                    bankNumber = Bank.bankLeumi,
+                    bankName = Bank.bankLeumi.ToString(),
+                    branchNumber = 2,
+                    branchAddress = "19 street ben-yehuda ",
+                    branchCity = "jerusalem"
+                }
+            };
         }
         public static string GuestRequestList()
         {
