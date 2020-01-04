@@ -10,33 +10,26 @@ namespace BL
 {
     public interface IBL
     {
-        #region add
-        void addRequest(GuestRequest request);
+        #region request
+        void addRequest(GuestRequest guest);
+        GuestRequest getRequest(long key);
+        void updateRequest(GuestRequest guest);
+        IEnumerable<GuestRequest> getAllGuestRequest(Func<GuestRequest, bool> predicate = null);
+        #endregion
+        #region hostingUnit
         void addHostingUnit(HostingUnit unit);
+        HostingUnit getHostingUnit(long key);
+        void updateHostingUnit(HostingUnit unit);
+        void deleteHostingUnit(HostingUnit hosting);
+        IEnumerable<HostingUnit> getAllHostingUnit(Func<HostingUnit, bool> predicate = null);
+        #endregion
+        #region order
         void addOrder(Order order);
-
+        void updateOrder(Order order);
+        Order getOrder(long key);
+        IEnumerable<Order> getAllOrder(Func<Order, bool> predicate = null);
         #endregion
 
-        void updateRequest(GuestRequest request);
-
-        //hostingUnit
-     void addHostingUnit(HostingUnit h);
-        void deleteHostingUnit(HostingUnit h);
-        void updateHostingUnit(HostingUnit h);
-
-        //Invitation
-        void UpdateOrder(Order order);
-
-        //prints 
-        void printAllHostingUnit(HostingUnit h);
-        void printAllOrder(HostingUnit h);
-        void printAllCustomer();
-        void printAllBranchesOfBank();
-
-        IEnumerable <GuestRequest> GetAllGuestRequests(Func <GuestRequest,bool>predicate=null);
-        IEnumerable <HostingUnit> GetAllHostingUnit(Func <HostingUnit,bool>predicate=null);
-        IEnumerable <Order> GetAllOrder(Func <Order,bool>predicate=null);
-        
 
     }
 }
