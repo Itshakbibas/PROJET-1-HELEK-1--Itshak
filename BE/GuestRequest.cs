@@ -24,7 +24,7 @@ namespace BE
         public DateTime registrationDate { get; set; }
         public DateTime entryDate { get; set; }
         public DateTime releaseDate { get; set; }
-        public TypeAreaOfTheCountry area { get; set; }
+        public TypeAreaOfTheCountry typeArea { get; set; }
         //subArea
         public TypeOfHostingUnit type { get; set; }
         public int adults { get; set; }
@@ -32,7 +32,7 @@ namespace BE
         public Options pool { get; set; }
         public Options jacuzzi { get; set; }
         public Options garden { get; set; }
-        public Options childrensAttractions { get; set; }
+        public Options childrenAttractions { get; set; }
         //doit onn laisser le ctor, sinon attention au compte de Configuration.guestRequestCount++;
         public GuestRequest()
         {
