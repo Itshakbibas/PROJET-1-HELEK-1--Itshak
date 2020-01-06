@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    public enum CustomerRequirementStatus
+    public enum GuestRequestStatus
     {
         active,
         transactionClosed,
         hasExpired
     }
-    public enum StatusOfOrder
+    public enum OrderStatus
     {
         notYetAddressed,
         mailWasSent,

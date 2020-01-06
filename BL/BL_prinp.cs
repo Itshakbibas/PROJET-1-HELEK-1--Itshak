@@ -28,7 +28,7 @@ namespace BL
                 privateName = "ron",
                 familyName= "Bibas",
                 mailAddress ="bibasitshak@gmail.com",
-                status =CustomerRequirementStatus.transactionClosed,
+                status = GuestRequestStatus.transactionClosed,
                 jacuzzi = Options.yes,
                 garden =  Options.yes,
                 childrenAttractions = Options.yes,
@@ -118,11 +118,14 @@ namespace BL
         {
             checkDate(request);
             dal.addRequest(request);
+
             addOrder(request);
         }
         public void updateRequest(GuestRequest request) { }
 
        // public void printAllCustomer(GuestRequest request) { }
+
+        
         public IEnumerable<GuestRequest> getAllGuestRequest(Func<GuestRequest, bool> predicate = null)
         {
             //if (predicate == null)
@@ -144,18 +147,25 @@ namespace BL
                 if (firstDay == 31) { firstMonth++; firstDay = 0; }//if we got to the end of the month               //
             }
             return true;
+
         }
 
         public void checkDate(GuestRequest request)
         {
-            string firstday = request.entryDate.ToString();
-            string lastday = request.releaseDate.ToString();
-            if (Int32.Parse(firstday.Substring(3, 5)) < Int32.Parse(lastday.Substring(3, 5)))
-                throw new Exception("the entrydate is not valuable");
-            if (Int32.Parse(firstday.Substring(3, 5)) == Int32.Parse(lastday.Substring(3, 5)) && Int32.Parse(lastday.Substring(0, 2)) - Int32.Parse(firstday.Substring(0, 2)) < 1)
-            {
-                throw new Exception("the entrydate is not valuable");
-            }
+            if(request.entryDate > request.releaseDate)
+                throw new Exception("ERROR ! The Date of entry > Date of release");
+        }
+
+
+        public int numDaysBetweenTwoDates(DateTime date1, DateTime date2 = default(DateTime))
+        {
+            if (date1 > date2)
+                date2 = DateTime.Now;
+            var diff = date2 - date1;
+            int numDays = int.Parse(diff.TotalDays.ToString());
+            return numDays;
+        }
+
 
         }
         #endregion request 
@@ -177,10 +187,16 @@ namespace BL
             return from request in getAllGuestRequest()
                    group request by request.adults + request.children;
         }
+        public IEnumerable<Order> getAllOrder(Func<Order, bool> predicate = null)
+        {
+            //if (predicate == null)
+            return dal.getAllOrder(predicate);
+        }
 
         #endregion
 
         //Invitation
+
         #region order
         public void addOrder(GuestRequest request)
         {
@@ -240,10 +256,52 @@ namespace BL
                 entryDate = entrydate,
                 releaseDate = releasedate,
             };
-            return from n in getAllHostingUnit()
+           return from n in getAllHostingUnit()
                    where isRoomFree(n,request)                          
                    select n;
-        }//cest fait 
+        }
+        public int numOrderForGuestRequest(GuestRequest request)
+        {
+            Func<Order, bool> predicate = order =>
+            {
+                bool b1 = order.guestRequestKey == request.guestRequestKey;
+                bool b2 = order.status == OrderStatus.mailWasSent;
+                return b1 && b2;
+            };
+
+            var orderMailWasSentList = getAllOrder(predicate);
+            return orderMailWasSentList.Count();
+        }
+        public int numOrderForHostingUnit(HostingUnit unit)
+        {
+            Func<Order, bool> predicate = order =>
+            {
+                bool b1 = order.hostingUnitKey == unit.hostingUnitKey;
+                bool b2 = order.status == OrderStatus.mailWasSent;
+                bool b3 = order.status == OrderStatus.reserved;
+                return b1 && (b2 || b3);
+            };
+
+            var orderMailWasSentList = getAllOrder(predicate);
+            return orderMailWasSentList.Count();
+        }
+
+
+        //prints 
+
+        //   public void printAllOrder(Order order) { }
+        #endregion
+        //    public void printAllBranchesOfBank(BankBranch bank) { }
+        // New Itshak2
+
+
+        #region functions
+
+
+ 
+
+        }
+
         public bool checkTransactionSigned(Order order)
         {
             GuestRequest req = getAllGuestRequest().FirstOrDefault(x => x.guestRequestKey == order.guestRequestKey);

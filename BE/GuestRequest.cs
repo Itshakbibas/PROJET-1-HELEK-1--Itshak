@@ -22,42 +22,40 @@ namespace BE
         //dans le champs directement plutot que ds le ctor
         //car interdit d'utiliser ctor d'apres ennoncé
 
-        public CustomerRequirementStatus Status { get; set; }
-        public DateTime RegistrationDate { get; set; }
-        public DateTime EntryDate { get; set; }
-        public DateTime ReleaseDate { get; set; }
-        //area
-        public TypeAreaOfTheCountry Area { get; set; }
-        //subArea
 
-        public TypeOfHostingUnit Type { get; set; }
-        public int Adults { get; set; }
-        public int Children { get; set; }
-        public Options Pool { get; set; }
-        public Options Jacuzzi { get; set; }
-        public Options Garden { get; set; }
-        public Options ChildrensAttractions { get; set; }
+        public GuestRequestStatus status { get; set; }
+        public DateTime registrationDate { get; set; }
+        public DateTime entryDate { get; set; }
+        public DateTime releaseDate { get; set; }
+        public TypeAreaOfTheCountry area { get; set; }
+        //subArea
+        public TypeOfHostingUnit type { get; set; }
+        public int adults { get; set; }
+        public int children { get; set; }
+        public Options pool { get; set; }
+        public Options jacuzzi { get; set; }
+        public Options garden { get; set; }
+        public Options childrenAttractions { get; set; }
+        //doit onn laisser le ctor, sinon attention au compte de Configuration.guestRequestCount++;
         public GuestRequest()
         {
 
-            GuestRequestKey = Configuration.GuestRequestCount++;
+            guestRequestKey = Configuration.guestRequestCount;
+            privateName = "";
+            familyName = "";
+            mailAddress = "";
+            status = GuestRequestStatus.active;
+            registrationDate = new DateTime(2000,1,1);
+            entryDate = new DateTime(2000, 1, 1);
+            releaseDate= new DateTime(2000, 1, 1);
+            area = TypeAreaOfTheCountry.all;
+            type = TypeOfHostingUnit.all;
+            adults = 1;
+            children = 0;
+            pool = Options.optional;
+            garden = Options.optional;
+            childrensAttractions = Options.optional;
 
-            PrivateName = "";
-            FamilyName = "";
-            MailAddress = "";
-            Status = CustomerRequirementStatus.active;
-
-
-            RegistrationDate = new DateTime(2000,1,1);
-            EntryDate = new DateTime(2000, 1, 1);
-            ReleaseDate= new DateTime(2000, 1, 1);
-            Area = TypeAreaOfTheCountry.all;
-            Type = TypeOfHostingUnit.all;
-            Adults = 1;
-            Children = 0;
-            Pool = Options.optional;
-            Garden = Options.optional;
-            ChildrensAttractions = Options.optional;
 
         }
         public override string ToString() { 
