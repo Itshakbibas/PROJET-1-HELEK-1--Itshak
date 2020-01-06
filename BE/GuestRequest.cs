@@ -12,9 +12,9 @@ namespace BE
 
         public long GuestRequestKey ;
 
-        public string PrivateName { get; set; }
-        public string FamilyName { get; set; }
-        public string MailAddress { get; set; }
+        public string privateName { get; set; }
+        public string familyName { get; set; }
+        public string mailAddress { get; set; }
         //status
 
 
