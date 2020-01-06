@@ -31,7 +31,7 @@ namespace BL
         IEnumerable<HostingUnit> getAllHostingUnit(Func<HostingUnit, bool> predicate = null);
         #endregion
         #region order
-        void addOrder(Order order);
+        void addOrder(GuestRequest request);
         void updateOrder(Order order);
         void printAllOrder(Order order);
 

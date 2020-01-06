@@ -31,11 +31,9 @@ namespace BL
                 status = GuestRequestStatus.transactionClosed,
                 jacuzzi = Options.yes,
                 garden =  Options.yes,
-                childrensAttractions = Options.yes,
+                childrenAttractions = Options.yes,
                 adults=1,
                 children=0,
-
-
             };
 
             try
@@ -58,7 +56,7 @@ namespace BL
                 status = CustomerRequirementStatus.active,
                 jacuzzi = Options.no,
                 garden = Options.optional,
-                childrensAttractions = Options.yes,
+                childrenAttractions = Options.yes,
                 adults = 2,
                 children = 10,
 
@@ -85,7 +83,7 @@ namespace BL
                 status = CustomerRequirementStatus.active,
                 jacuzzi = Options.no,
                 garden = Options.no,
-                childrensAttractions = Options.no,
+                childrenAttractions = Options.no,
                 adults = 2,
                 children = 15,
 
@@ -120,33 +118,33 @@ namespace BL
         {
             checkDate(request);
             dal.addRequest(request);
+
+            addOrder(request);
         }
         public void updateRequest(GuestRequest request) { }
 
-      //  public void printAllCustomer(GuestRequest request) { }
+       // public void printAllCustomer(GuestRequest request) { }
+
+        
         public IEnumerable<GuestRequest> getAllGuestRequest(Func<GuestRequest, bool> predicate = null)
         {
             //if (predicate == null)
             return dal.getAllGuestRequest(predicate);
         }
-        public bool isRoomFree(DateTime entryDate, int numberVacationsDays)
+        public bool isRoomFree(HostingUnit unit,GuestRequest request)
         {
 
-            string beginday = entryDate.ToString();
-
-            int firstDay = Int32.Parse(beginday.Substring(0, 2));
-            int firstMonth = Int32.Parse(beginday.Substring(3, 5));
-
+            int firstDay = request.entryDate.Day;
+            int firstMonth = request.entryDate.Month;
+            int lastDay = request.entryDate.Day;
+            int lastMonth = request.entryDate.Month;
             firstDay -= 1;
             firstMonth -= 1;
-            while (numberVacationsDays != 0)
+            while (firstDay != lastDay || firstMonth != lastMonth)
             {
-                if (diary[firstMonth, firstDay++])//if one's of the day is already taken 
+                if (unit.diary[firstMonth, firstDay++])//if one's of the day is already taken 
                     return false;
-
-                if (firstDay == 31) { firstMonth++; firstDay = 0; }//if we got to the end of the month
-
-                numberVacationsDays--;//
+                if (firstDay == 31) { firstMonth++; firstDay = 0; }//if we got to the end of the month               //
             }
             return true;
 
@@ -158,6 +156,7 @@ namespace BL
                 throw new Exception("ERROR ! The Date of entry > Date of release");
         }
 
+
         public int numDaysBetweenTwoDates(DateTime date1, DateTime date2 = default(DateTime))
         {
             if (date1 > date2)
@@ -167,6 +166,8 @@ namespace BL
             return numDays;
         }
 
+
+        }
         #endregion request 
         #region unit 
 
@@ -195,12 +196,69 @@ namespace BL
         #endregion
 
         //Invitation
-        #region Order
-        public void addOrder(Order order)
+
+        #region order
+        public void addOrder(GuestRequest request)
         {
+
+             Func<HostingUnit, bool> predicate = unit =>
+                 {
+                     bool b1 = unit.adultPlaces >= request.adults;
+                     bool b2 = unit.childrenPlaces >= request.children;
+                     bool b3 = (request.jacuzzi == Options.yes) ? unit.jacuzzi : (request.jacuzzi == Options.no) ? !unit.jacuzzi : true;
+                     bool b4 = (request.pool == Options.yes) ? unit.pool : (request.pool == Options.no) ? !unit.pool : true;
+                     bool b5 = (request.childrenAttractions == Options.yes) ? unit.childrenAttractions : (request.childrenAttractions == Options.no) ? !unit.childrenAttractions : true;
+                     bool b6 = (request.garden == Options.yes) ? unit.garden : (request.garden == Options.no) ? !unit.garden : true;
+                     bool b7 = (request.typeArea == TypeAreaOfTheCountry.all) ? true : request.typeArea == unit.typeArea;
+                     return b1 && b2 && b3 && b4 && b5 && b6 && b7;
+                 };
+
+            foreach (HostingUnit unit in getAllHostingUnit(predicate))
+            {
+                if (isRoomFree(unit, request))//check if the room is free 
+                {
+                    dal.addOrder(new Order
+                    {
+                        hostingUnitKey = unit.hostingUnitKey,
+                        guestRequestKey = request.guestRequestKey,
+                        status = StatusOfOrder.notYetAddressed,
+                        createDate = request.entryDate
+                    });
+                }
+            }
+
         }
         public void updateOrder(Order order)
         {
+            
+        }
+        public IEnumerable<Order> getAllOrder(Func<Order, bool> predicate = null)
+        {
+            //if (predicate == null)
+            return dal.getAllOrder(predicate);
+        }
+        //prints 
+
+        //public void printAllOrder(Order order) { }
+        #endregion
+        // public void printAllBranchesOfBank(BankBranch bank) { }
+        // New Itshak2
+
+
+       
+
+        #region functions
+        
+        public IEnumerable<HostingUnit> getFreeUnitList(DateTime entrydate, DateTime releasedate)
+        {
+            GuestRequest request = new GuestRequest
+            {
+                entryDate = entrydate,
+                releaseDate = releasedate,
+            };
+           return from n in getAllHostingUnit()
+                   where isRoomFree(n,request)                          
+                   select n;
         }
         public int numOrderForGuestRequest(GuestRequest request)
         {
@@ -238,12 +296,12 @@ namespace BL
 
 
         #region functions
-        public IEnumerable<HostingUnit> getFreeUnitList(DateTime entryDate, int numberVacationsDays)
-        {
-            return from n in getAllHostingUnit()
-                   where n.isRoomFree(entryDate, numberVacationsDays) //verifie depuis la datedentre jusquau nombre de jours de fin 
-                   select n;
+
+
+ 
+
         }
+
         public bool checkTransactionSigned(Order order)
         {
             GuestRequest req = getAllGuestRequest().FirstOrDefault(x => x.guestRequestKey == order.guestRequestKey);
@@ -253,13 +311,8 @@ namespace BL
         {
             return from unit in getAllHostingUnit()
                    group unit by unit.typeArea;
-
         }
-        /* public IEnumerable<IGrouping<int, Host>>groupHostByNumOfUnitList()
-         {
-             return from unit in GetAllHostingUnit()
-                    group unit by unit.typeArea;
-         }*/
+      
         public IEnumerable<IGrouping<TypeAreaOfTheCountry, GuestRequest>> groupRequestByAreaList()
         {
             return from request in getAllGuestRequest()
@@ -267,7 +320,7 @@ namespace BL
             //                   select new { area = areagroup.Key, request = areagroup };
 
         }
-
+        public 
 
         #endregion
     }

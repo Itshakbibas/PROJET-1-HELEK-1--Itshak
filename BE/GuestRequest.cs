@@ -9,16 +9,19 @@ namespace BE
     //changement nom en minuscule
     public class GuestRequest : Clonable
     {
-        //faut il rajouter un ID ?
-        public long guestRequestKey { get; set; }
+
+        public long GuestRequestKey ;
+
         public string privateName { get; set; }
         public string familyName { get; set; }
         public string mailAddress { get; set; }
-        public bool  transactionSigned { get; set; }
-    //status
-    //faut il definir le satut de CustomerRequirementStatus 
-    //dans le champs directement plutot que ds le ctor
-    //car interdit d'utiliser ctor d'apres ennoncé
+        //status
+
+
+        //faut il definir le satut de CustomerRequirementStatus 
+        //dans le champs directement plutot que ds le ctor
+        //car interdit d'utiliser ctor d'apres ennoncé
+
 
         public GuestRequestStatus status { get; set; }
         public DateTime registrationDate { get; set; }
@@ -53,25 +56,10 @@ namespace BE
             garden = Options.optional;
             childrensAttractions = Options.optional;
 
+
         }
         public override string ToString() { 
-            return string.Format(
-                "guestRequestKey : " + guestRequestKey +"\n"+
-                "privateName : " + privateName + "\n" +
-                "familyName : " + familyName + "\n" +
-                "mailAddress : " + mailAddress + "\n" +
-                "status : " + status + "\n" +
-                "registrationDate : " + registrationDate + "\n" +
-                "entryDate : " + entryDate + "\n" +
-                "releaseDate : " + releaseDate + "\n" +
-                "area : " + area + "\n" +
-                "type : " + type + "\n" +
-                "adults : " + adults + "\n" +
-                "children : " + children + "\n" +
-                "pool : " + pool + "\n" +
-                "garden : " + garden + "\n" +
-                "childrensAttractions : " + childrensAttractions + "\n" 
-                ); 
+            return string.Format(""); 
         }
 
 
