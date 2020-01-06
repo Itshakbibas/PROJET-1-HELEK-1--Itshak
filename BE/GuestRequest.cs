@@ -7,72 +7,61 @@ using System.Threading.Tasks;
 namespace BE
 {
     //changement nom en minuscule
-    public class GuestRequest 
+    public class GuestRequest : Clonable
     {
-        //faut il rajouter un ID ?
-        public long guestRequestKey { get; set; }
-        public string privateName { get; set; }
-        public string familyName { get; set; }
-        public string mailAddress { get; set; }
+
+        public long GuestRequestKey ;
+
+        public string PrivateName { get; set; }
+        public string FamilyName { get; set; }
+        public string MailAddress { get; set; }
         //status
+
+
         //faut il definir le satut de CustomerRequirementStatus 
         //dans le champs directement plutot que ds le ctor
         //car interdit d'utiliser ctor d'apres ennoncé
-        public  bool transactionSigned { get; set; }
 
-        public CustomerRequirementStatus status { get; set; }
-        public DateTime registrationDate { get; set; }
-        public DateTime entryDate { get; set; }
-        public DateTime releaseDate { get; set; }
-        public TypeAreaOfTheCountry area { get; set; }
+        public CustomerRequirementStatus Status { get; set; }
+        public DateTime RegistrationDate { get; set; }
+        public DateTime EntryDate { get; set; }
+        public DateTime ReleaseDate { get; set; }
+        //area
+        public TypeAreaOfTheCountry Area { get; set; }
         //subArea
-        public TypeOfHostingUnit type { get; set; }
-        public int adults { get; set; }
-        public int children { get; set; }
-        public Options pool { get; set; }
-        public Options jacuzzi { get; set; }
-        public Options garden { get; set; }
-        public Options childrensAttractions { get; set; }
-        //doit onn laisser le ctor, sinon attention au compte de Configuration.guestRequestCount++;
+
+        public TypeOfHostingUnit Type { get; set; }
+        public int Adults { get; set; }
+        public int Children { get; set; }
+        public Options Pool { get; set; }
+        public Options Jacuzzi { get; set; }
+        public Options Garden { get; set; }
+        public Options ChildrensAttractions { get; set; }
         public GuestRequest()
         {
 
-            guestRequestKey = Configuration.guestRequestCount++;
-            privateName = "";
-            familyName = "";
-            mailAddress = "";
-            status = CustomerRequirementStatus.active;
-            registrationDate = new DateTime(2000, 1, 1);
-            entryDate = new DateTime(2000, 1, 1);
-            releaseDate = new DateTime(2000, 1, 1);
-            area = TypeAreaOfTheCountry.all;
-            type = TypeOfHostingUnit.all;
-            adults = 1;
-            children = 0;
-            pool = Options.optional;
-            garden = Options.optional;
-            childrensAttractions = Options.optional;
+            GuestRequestKey = Configuration.GuestRequestCount++;
+
+            PrivateName = "";
+            FamilyName = "";
+            MailAddress = "";
+            Status = CustomerRequirementStatus.active;
+
+
+            RegistrationDate = new DateTime(2000,1,1);
+            EntryDate = new DateTime(2000, 1, 1);
+            ReleaseDate= new DateTime(2000, 1, 1);
+            Area = TypeAreaOfTheCountry.all;
+            Type = TypeOfHostingUnit.all;
+            Adults = 1;
+            Children = 0;
+            Pool = Options.optional;
+            Garden = Options.optional;
+            ChildrensAttractions = Options.optional;
 
         }
-        public override string ToString()
-        {
-            return string.Format(
-                "guestRequestKey : " + guestRequestKey + "\n" +
-                "privateName : " + privateName + "\n" +
-                "familyName : " + familyName + "\n" +
-                "mailAddress : " + mailAddress + "\n" +
-                "status : " + status + "\n" +
-                "registrationDate : " + registrationDate + "\n" +
-                "entryDate : " + entryDate + "\n" +
-                "releaseDate : " + releaseDate + "\n" +
-                "area : " + area + "\n" +
-                "type : " + type + "\n" +
-                "adults : " + adults + "\n" +
-                "children : " + children + "\n" +
-                "pool : " + pool + "\n" +
-                "garden : " + garden + "\n" +
-                "childrensAttractions : " + childrensAttractions + "\n"
-                );
+        public override string ToString() { 
+            return string.Format(""); 
         }
 
 

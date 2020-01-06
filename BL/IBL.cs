@@ -10,27 +10,51 @@ namespace BL
 {
     public interface IBL
     {
+
         //request
         #region request
-        void addRequest(GuestRequest guest);
-        GuestRequest getRequest(long key);
-        void updateRequest(GuestRequest guest);
+        void addRequest(GuestRequest request);
+        //GuestRequest getRequest(long key);
+        void updateRequest(GuestRequest request);
+        void printAllCustomer(GuestRequest request);
         IEnumerable<GuestRequest> getAllGuestRequest(Func<GuestRequest, bool> predicate = null);
+
+
+
         #endregion
         #region hostingUnit
         void addHostingUnit(HostingUnit unit);
-        HostingUnit getHostingUnit(long key);
+       // HostingUnit getHostingUnit(long key);
         void updateHostingUnit(HostingUnit unit);
-        void deleteHostingUnit(HostingUnit hosting);
+        void deleteHostingUnit(HostingUnit unit);
+        void printAllHostingUnit(HostingUnit unit);
         IEnumerable<HostingUnit> getAllHostingUnit(Func<HostingUnit, bool> predicate = null);
         #endregion
         #region order
-        void addOrder(Order order);
+        void addOrder(GuestRequest request);
         void updateOrder(Order order);
-        Order getOrder(long key);
+        void printAllOrder(Order order);
+
+        // Order getOrder(long key);
         IEnumerable<Order> getAllOrder(Func<Order, bool> predicate = null);
 
-        #endregion
-    }
 
+        #endregion
+
+
+
+
+
+
+        //prints 
+
+
+        void printAllBranchesOfBank(BankBranch bank);
+
+   
+
+
+        
+
+    }
 }

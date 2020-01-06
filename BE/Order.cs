@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    public class Order
+    public class Order : Clonable
     {
 
         public long hostingUnitKey { get; set; }
@@ -14,11 +14,8 @@ namespace BE
         public long orderKey { get; set; }
         public StatusOfOrder status { get; set; }
         public DateTime createDate { get; set; }
-        public DateTime OrderDate { get; set; } 
+        public DateTime orderDate { get; set; } 
        
-
-
-
         public Order()
         {
             hostingUnitKey = 00000000;
@@ -30,7 +27,12 @@ namespace BE
         }
         public override string ToString()
         {
-            return "";
+            return "hostingUnitKey : " + hostingUnitKey + "\n" +
+                "guestRequestKey : " + guestRequestKey + "\n" +
+                "orderKey : " + orderKey + "\n" +
+                "status : " + status + "\n" +
+                "createDate : " + createDate + "\n" +
+                "orderDate : " + orderDate + "\n";
         }
     }
 }
