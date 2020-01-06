@@ -16,7 +16,7 @@ namespace BL
         void addRequest(GuestRequest request);
         //GuestRequest getRequest(long key);
         void updateRequest(GuestRequest request);
-        void printAllCustomer(GuestRequest request);
+//        void printAllCustomer(GuestRequest request);
         IEnumerable<GuestRequest> getAllGuestRequest(Func<GuestRequest, bool> predicate = null);
 
 

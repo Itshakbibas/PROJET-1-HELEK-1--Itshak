@@ -12,7 +12,7 @@ namespace BE
         public long hostingUnitKey { get; set; }
         public long guestRequestKey { get; set; }
         public long orderKey { get; set; }
-        public StatusOfOrder status { get; set; }
+        public OrderStatus status { get; set; }
         public DateTime createDate { get; set; }
         public DateTime orderDate { get; set; } 
        
@@ -21,7 +21,7 @@ namespace BE
             hostingUnitKey = 00000000;
             guestRequestKey = 00000000;
             orderKey = 00000000;
-            status = StatusOfOrder.notYetAddressed;
+            status = OrderStatus.notYetAddressed;
             createDate = new DateTime(2000, 1, 1);
             orderDate = new DateTime(2000, 1, 1);
         }
