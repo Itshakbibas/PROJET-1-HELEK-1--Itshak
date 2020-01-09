@@ -53,7 +53,7 @@ namespace BL
                 privateName = "mickael",
                 familyName = "Balensi",
                 mailAddress = "blensimickael@gmail.com",
-                status = CustomerRequirementStatus.active,
+                status = GuestRequestStatus.active,
                 jacuzzi = Options.no,
                 garden = Options.optional,
                 childrenAttractions = Options.yes,
@@ -80,7 +80,7 @@ namespace BL
                 privateName = "Shmuel",
                 familyName = "Illouz",
                 mailAddress = "IllouzShmuel@gmail.com",
-                status = CustomerRequirementStatus.active,
+                status = GuestRequestStatus.active,
                 jacuzzi = Options.no,
                 garden = Options.no,
                 childrenAttractions = Options.no,
@@ -124,8 +124,6 @@ namespace BL
         public void updateRequest(GuestRequest request) { }
 
        // public void printAllCustomer(GuestRequest request) { }
-
-        
         public IEnumerable<GuestRequest> getAllGuestRequest(Func<GuestRequest, bool> predicate = null)
         {
             //if (predicate == null)
@@ -149,14 +147,11 @@ namespace BL
             return true;
 
         }
-
         public void checkDate(GuestRequest request)
         {
             if(request.entryDate > request.releaseDate)
                 throw new Exception("ERROR ! The Date of entry > Date of release");
         }
-
-
         public int numDaysBetweenTwoDates(DateTime date1, DateTime date2 = default(DateTime))
         {
             if (date1 > date2)
@@ -164,9 +159,6 @@ namespace BL
             var diff = date2 - date1;
             int numDays = int.Parse(diff.TotalDays.ToString());
             return numDays;
-        }
-
-
         }
         #endregion request 
         #region unit 
@@ -179,7 +171,6 @@ namespace BL
         public void printAllHostingUnit(HostingUnit unit) { }
         public IEnumerable<HostingUnit> getAllHostingUnit(Func<HostingUnit, bool> predicate = null)
         {
-            //if (predicate == null)
             return dal.getAllHostingUnit(predicate);
         }
         public IEnumerable<IGrouping<int, GuestRequest>> groupRequestByNumOfperson()
@@ -187,20 +178,12 @@ namespace BL
             return from request in getAllGuestRequest()
                    group request by request.adults + request.children;
         }
-        public IEnumerable<Order> getAllOrder(Func<Order, bool> predicate = null)
-        {
-            //if (predicate == null)
-            return dal.getAllOrder(predicate);
-        }
+
 
         #endregion
-
-        //Invitation
-
         #region order
         public void addOrder(GuestRequest request)
         {
-
              Func<HostingUnit, bool> predicate = unit =>
                  {
                      bool b1 = unit.adultPlaces >= request.adults;
@@ -221,7 +204,7 @@ namespace BL
                     {
                         hostingUnitKey = unit.hostingUnitKey,
                         guestRequestKey = request.guestRequestKey,
-                        status = StatusOfOrder.notYetAddressed,
+                        status = OrderStatus.notYetAddressed,
                         createDate = request.entryDate
                     });
                 }
@@ -243,10 +226,6 @@ namespace BL
         #endregion
         // public void printAllBranchesOfBank(BankBranch bank) { }
         // New Itshak2
-
-
-       
-
         #region functions
         
         public IEnumerable<HostingUnit> getFreeUnitList(DateTime entrydate, DateTime releasedate)
@@ -293,14 +272,12 @@ namespace BL
         #endregion
         //    public void printAllBranchesOfBank(BankBranch bank) { }
         // New Itshak2
-
-
         #region functions
 
 
  
 
-        }
+        
 
         public bool checkTransactionSigned(Order order)
         {
@@ -320,7 +297,6 @@ namespace BL
             //                   select new { area = areagroup.Key, request = areagroup };
 
         }
-        public 
 
         #endregion
     }

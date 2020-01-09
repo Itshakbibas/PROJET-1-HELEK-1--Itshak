@@ -10,7 +10,7 @@ namespace BE
     public class GuestRequest : Clonable
     {
 
-        public long GuestRequestKey ;
+        public long guestRequestKey ;
 
         public string privateName { get; set; }
         public string familyName { get; set; }
@@ -27,7 +27,8 @@ namespace BE
         public DateTime registrationDate { get; set; }
         public DateTime entryDate { get; set; }
         public DateTime releaseDate { get; set; }
-        public TypeAreaOfTheCountry area { get; set; }
+        public bool transactionSigned { get; set; }
+        public TypeAreaOfTheCountry typeArea { get; set; }
         //subArea
         public TypeOfHostingUnit type { get; set; }
         public int adults { get; set; }

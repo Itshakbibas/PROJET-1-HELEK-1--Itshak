@@ -76,7 +76,6 @@ namespace DAL
             DataSource.hostingUnitList.Remove(unit);
         }
         public IEnumerable<HostingUnit> getAllHostingUnit(Func<HostingUnit, bool> predicate = null)
-
         {
             if (predicate == null)
                 return DataSource.hostingUnitList.AsEnumerable();

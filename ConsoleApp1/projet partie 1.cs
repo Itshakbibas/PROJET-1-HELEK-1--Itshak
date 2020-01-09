@@ -11,7 +11,7 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
 
-            static BL.IBL bl = BL.FactoryBL.GetBL();
+            //static BL.IBL bl = BL.FactoryBL.GetBL();
 
         }
     }
