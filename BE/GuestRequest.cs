@@ -49,13 +49,13 @@ namespace BE
             registrationDate = new DateTime(2000,1,1);
             entryDate = new DateTime(2000, 1, 1);
             releaseDate= new DateTime(2000, 1, 1);
-            area = TypeAreaOfTheCountry.all;
+            typeArea = TypeAreaOfTheCountry.all;
             type = TypeOfHostingUnit.all;
             adults = 1;
             children = 0;
             pool = Options.optional;
             garden = Options.optional;
-            childrensAttractions = Options.optional;
+            childrenAttractions = Options.optional;
 
 
         }

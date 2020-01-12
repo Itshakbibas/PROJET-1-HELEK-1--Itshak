@@ -10,9 +10,9 @@ namespace BE
     {
         //changement nom en minuscule
 
-        public static long HostKeyCount { get; set; }
-        public static long HostingUnitCount = 10000000;
-        Fullprop        
+        public static long hostKeyCount { get; set; }
+        public static long hostingUnitCount = 10000000;
+                
 
 
 

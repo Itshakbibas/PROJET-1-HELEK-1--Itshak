@@ -289,14 +289,24 @@ namespace BL
             return from unit in getAllHostingUnit()
                    group unit by unit.typeArea;
         }
-      
-        public IEnumerable<IGrouping<TypeAreaOfTheCountry, GuestRequest>> groupRequestByAreaList()
-        {
-            return from request in getAllGuestRequest()
-                   group request by request.area into areagroup;
-            //                   select new { area = areagroup.Key, request = areagroup };
 
+        public void printAllOrder(Order order)
+        {
+            throw new NotImplementedException();
         }
+
+        public void printAllBranchesOfBank(BankBranch bank)
+        {
+            throw new NotImplementedException();
+        }
+
+        /*      public IEnumerable<IGrouping<TypeAreaOfTheCountry, GuestRequest>> groupRequestByAreaList()
+              {
+                  return from request in getAllGuestRequest()
+                         group request by request.area into areagroup;
+                  //                   select new { area = areagroup.Key, request = areagroup };
+
+              }*/
 
         #endregion
     }

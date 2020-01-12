@@ -48,11 +48,10 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <!--#region who-->
-            <!--Who-->
             <Label Content="Who ?"
                    Grid.Column="0"
                    Grid.Row="0"
-                   Margin="16"
+                   Margin="16,10,15.6,9.8"
                    FontSize="20"
                          />
             <Label Content="Family Name :"
@@ -61,6 +60,7 @@
                    Margin="15"/>
             <TextBox 
                 x:Name="familyTextBox"
+                    Text="{Binding familyName, Mode=TwoWay}"
                    Grid.Column="1"
                    Grid.Row="1"
                    Margin="15"
@@ -72,6 +72,7 @@
                    Margin="15" />
             <TextBox 
                 x:Name="privateTextBox"
+                    Text="{Binding privateName, Mode=TwoWay}"
                    Grid.Column="1"
                    Grid.Row="2"
                    Margin="15" 
@@ -83,94 +84,112 @@
                    Margin="15"/>
             <TextBox 
                  x:Name="mailTextBox"
+                    Text="{Binding mailAddress, Mode=TwoWay}"
                    Grid.Column="1"
                    Grid.Row="3"
                    Margin="15"
                 />
             <!--#endregion-->
             <!--#region When-->
-            <!--When-->
             <Label Content="When ?"
                    Grid.Column="0"
                    Grid.Row="4"
                    Margin="15"         
                    />
-            
-            <Label Content="Date of Travel :"
+
+            <Label Content="Entry-Date :"
                    Grid.Column="0"
                    Grid.Row="5"
                    Margin="15"/>
-            <Viewbox Name="EntryDateCalendar"
+            <DatePicker Name="EntryDateCalendar"
                    Grid.Column="1"
                    Grid.Row="5"
                    Margin="15"
+                   SelectedDate="{Binding entryDate, Mode=TwoWay}"
+                />
+            <Label Content="Release-Date :"
+                   Grid.Column="0"
+                   Grid.Row="6"
+                   Margin="15"/>
+            <DatePicker Name="ReleaseDateCalendar"
+                   Grid.Column="1"
+                   Grid.Row="6"
+                   Margin="15"
+                   SelectedDate="{Binding releaseDate, Mode=TwoWay}"
                 />
             <!--#endregion-->
             <!--#region person-->
-            <!--How many person -->
             <Label Content="How many ?"
                    Grid.Column="0"
-                   Grid.Row="6"
+                   Grid.Row="7"
                    Margin="15"         
                    />
             <Label Content="Adults :"
                    Grid.Column="0"
-                   Grid.Row="7"
+                   Grid.Row="8"
                    Margin="15" />
             <TextBox 
                  x:Name="AdultsTextBox"
                   Grid.Column="1"
-                   Grid.Row="7"
+                   Grid.Row="8"
                    Margin="15" 
+                Text="{Binding adults, Mode=TwoWay}"
                 />
 
             <Label Content="Children :"
                    Grid.Column="0"
-                   Grid.Row="8"
+                   Grid.Row="9"
                    Margin="15"/>
             <TextBox 
                   x:Name="ChildrenTextBox"
                   Grid.Column="1"
-                   Grid.Row="8"
+                   Grid.Row="9"
                    Margin="15"
+                Text="{Binding children, Mode=TwoWay}"
                 />
             <!--#endregion-->
             <!--#region where-->
             <Label Content="Where ?"
                    Grid.Column="0"
-                   Grid.Row="9"
+                   Grid.Row="10"
                    Margin="15"         
                    />
 
             <Label Content="TypeArea :"
                    Grid.Column="0"
-                   Grid.Row="10"
+                   Grid.Row="11"
                    Margin="15"/>
             <ComboBox 
-                   x:Name="AreaComboBow"
-                   
+                   x:Name="AreaComboBox"                   
                    Grid.Column="1"               
-                   Grid.Row="10"
+                   Grid.Row="11"
+                   SelectedItem="{Binding TypeAreaOfTheCountry}"
                    Margin="15"
-                >
-                <ComboBoxItem Content=""/>
-                <ComboBoxItem/>
-                <ComboBoxItem/>
-                <ComboBoxItem/>
-                <ComboBoxItem/>
-            </ComboBox>
+                />
+
             <!--#endregion-->
             <!--#region what-->
             <Label Content="What ?"
                    Grid.Column="0"
-                   Grid.Row="11"
+                   Grid.Row="12"
                    Margin="15"         
                    />
+            <Label Content="Type Of Unit :"
+                   Grid.Column="0"
+                   Grid.Row="13"
+                   Margin="15"/>
+            <ComboBox 
+                   x:Name="UnitComboBox"                   
+                   Grid.Column="1"               
+                   Grid.Row="13"
+                   SelectedItem="{Binding TypeAreaOfTheCountry}"
+                   Margin="15"
+                />
             <CheckBox 
                 x:Name="JacuzziCheckBox"
                 Content="Jacuzzi"
                    Grid.Column="0"
-                   Grid.Row="12"
+                   Grid.Row="14"
                    IsChecked="False"
                    IsThreeState="False"
                    Margin="15"
@@ -179,7 +198,7 @@
             <CheckBox  x:Name="PoolCheckBox"
                    Content="Pool"
                    Grid.Column="0"
-                   Grid.Row="12"
+                   Grid.Row="14"
                    Margin="100,15,0,0"
                    IsChecked="False"
                    IsThreeState="False"
@@ -188,7 +207,7 @@
             <CheckBox x:Name="GardenCheckBox"
                 Content="Garden"
                    Grid.Column="1"
-                   Grid.Row="12"
+                   Grid.Row="14"
                    Margin="20,15,0,0"
                    IsChecked="False"
                    IsThreeState="False"
@@ -197,7 +216,7 @@
             <CheckBox x:Name="ChildrenAttractionsCheckBox"
                 Content="ChildrenAttractions :"
                    Grid.Column="1"
-                   Grid.Row="12"
+                   Grid.Row="14"
                    Margin="150,15,0,0"
                    IsChecked="False"
                    IsThreeState="False"

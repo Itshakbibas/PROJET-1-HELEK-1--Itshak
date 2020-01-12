@@ -24,59 +24,54 @@ namespace PLWPF
     {
         public GuestRequest currentRequest { get; set; }
         IBL bl;
-        ComboBox area = TypeAreaOfTheCountry;
 
 
         public AddRequestWindow()
         {
+            if (currentRequest == null)
+                currentRequest = new GuestRequest();
+            DataContext = currentRequest;
+
             InitializeComponent();
             currentRequest = new GuestRequest();
             bl = FactoryBL.getBL();
 
+            this.AreaComboBox.ItemsSource = Enum.GetValues(typeof(BE.TypeAreaOfTheCountry));
 
-            myCalendar = CreateCalendar();
-            EntryDateCalendar.Child = null;
-            EntryDateCalendar.Child = myCalendar;
-            SetBlackOutDates();
+            EntryDateCalendar.BlackoutDates.Add(new CalendarDateRange(DateTime.Now, DateTime.Parse("01/01/3000")));
+            EntryDateCalendar.BlackoutDates.Add(new CalendarDateRange(DateTime.Parse("01/01/1111"), DateTime.Parse("01/01/2000")));
+            EntryDateCalendar.SelectedDate = DateTime.Parse("01/01/2012");
+            #region commentaire du calendar
+            //myCalendar = CreateCalendar();
+            //EntryDateCalendar.Child = null;
+            //EntryDateCalendar.Child = myCalendar;
+            #endregion
         }
+        #region commentaire du calendar
+        //private Calendar myCalendar;
 
-        private Calendar myCalendar;
-
-        private Calendar CreateCalendar()
-        {
-            Calendar MonthlyCalendar = new Calendar();
-            MonthlyCalendar.Name = "MonthlyCalendar";
-            MonthlyCalendar.DisplayMode = CalendarMode.Month;
-            MonthlyCalendar.SelectionMode = CalendarSelectionMode.SingleRange;
-            MonthlyCalendar.IsTodayHighlighted = true;
-            return MonthlyCalendar;
-        }
-
-        private void SetBlackOutDates()
-        {
-         //   foreach (DateTime date in C)
-        }
+        //private Calendar CreateCalendar()
+        //{
+        //    Calendar MonthlyCalendar = new Calendar();
+        //    MonthlyCalendar.Name = "MonthlyCalendar";
+        //    MonthlyCalendar.DisplayMode = CalendarMode.Month;
+        //    MonthlyCalendar.SelectionMode = CalendarSelectionMode.SingleRange;
+        //    MonthlyCalendar.IsTodayHighlighted = true;
+        //    return MonthlyCalendar;
+        //}
+        #endregion
 
         private void buttonRequest_Click(object sender, RoutedEventArgs e)
         {
-            try
+            //try
             {
-
-                currentRequest.familyName = familyTextBox.Text;
-                currentRequest.privateName = privateTextBox.Text;
-                currentRequest.mailAddress = mailTextBox.Text;
                 currentRequest.registrationDate = DateTime.Now;
-                currentRequest.entryDate = familyTextBox.Text;
-                currentRequest.releaseDate = familyTextBox.Text;
-                currentRequest.adults= int.Parse(AdultsTextBox.Text);
-                currentRequest.children = int.Parse(ChildrenTextBox.Text);
-                currentRequest.typeArea = AreaComboBow.SelectedItem.;
                 currentRequest.jacuzzi = JacuzziCheckBox.IsThreeState ? Options.optional : JacuzziCheckBox.IsChecked==true ? Options.yes : Options.no;
                 currentRequest.pool = PoolCheckBox.IsThreeState ? Options.optional : PoolCheckBox.IsChecked == true ? Options.yes : Options.no;
                 currentRequest.garden = GardenCheckBox.IsThreeState ? Options.optional : GardenCheckBox.IsChecked == true ? Options.yes : Options.no;
                 currentRequest.childrenAttractions = ChildrenAttractionsCheckBox.IsThreeState ? Options.optional : ChildrenAttractionsCheckBox.IsChecked == true ? Options.yes : Options.no;
             }
-            catch ()
+           // catch ()
             {
 
             }
